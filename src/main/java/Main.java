@@ -1,39 +1,50 @@
 import model.*;
+import repository.*;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
 
 public class Main {
     public static void main(String[] args) {
-        Employee employee = new Employee("Gigel", "Marin", "gigelmarin_", "123456gigel");
-        Long idEmployee = 23456L;
-        employee.setId(idEmployee);
-        System.out.println(employee);
+        Properties props=new Properties();
 
-        Participant participant = new Participant("Dorel", "Lupu", 10);
-        Long idParticipant = 34567L;
-        participant.setId(idParticipant);
-        System.out.println(participant);
-
-        AgeEvent ageEvent1 = null;
-        AgeEvent ageEvent2 = null;
-        if (participant.getAge() >= 6 && participant.getAge() <= 8) {
-            ageEvent1 = new AgeEvent(AgeGroup.group_6_8_years, SportsEvent.meters_50);
-            ageEvent2 = new AgeEvent(AgeGroup.group_6_8_years, SportsEvent.meters_100);
-        } else if (participant.getAge() >= 9 && participant.getAge() <= 11) {
-            ageEvent1 = new AgeEvent(AgeGroup.group_9_11_years, SportsEvent.meters_100);
-            ageEvent2 = new AgeEvent(AgeGroup.group_9_11_years, SportsEvent.meters_1000);
-        } else if (participant.getAge() >= 12 && participant.getAge() <= 15) {
-            ageEvent1 = new AgeEvent(AgeGroup.group_12_15_years, SportsEvent.meters_1000);
-            ageEvent2 = new AgeEvent(AgeGroup.group_12_15_years, SportsEvent.meters_1500);
+        try {
+            props.load(new FileReader("bd.config"));
+        } catch (IOException e) {
+            System.out.println("cannot find bd.config " + e);
         }
-        Long idAgeEvent1 = 45678L;
-        ageEvent1.setId(idAgeEvent1);
-        Long idAgeEvent2 = 56789L;
-        ageEvent2.setId(idAgeEvent2);
-        System.out.println(ageEvent1);
 
-        Registration registration = new Registration(participant.getId(), ageEvent1.getId(), employee.getId());
-        Long idRegistration = 12345L;
-        registration.setId(idRegistration);
+        ParticipantRepository participantRepository = new ParticipantDBRepository(props);
 
-        System.out.println(registration);
+        System.out.println("Participants: ");
+        for(Participant participant : participantRepository.findAll())
+            System.out.println(participant);
+
+        System.out.println();
+
+        AgeEventRepository ageEventRepository = new AgeEventDBRepository(props);
+
+        System.out.println("Age events: ");
+        for(AgeEvent ageEvent : ageEventRepository.findAll())
+            System.out.println(ageEvent);
+
+        System.out.println();
+
+        EmployeeRepository employeeRepository = new EmployeeDBRepository(props);
+
+        System.out.println("Employees: ");
+        for(Employee employee : employeeRepository.findAll())
+            System.out.println(employee);
+
+        System.out.println();
+
+        RegistrationRepository registrationRepository = new RegistrationDBRepository(props);
+
+        System.out.println("Registrations: ");
+        for(Registration registration : registrationRepository.findAll())
+            System.out.println(registration);
+
+        System.out.println();
     }
 }

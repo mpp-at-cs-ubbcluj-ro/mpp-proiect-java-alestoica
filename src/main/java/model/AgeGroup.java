@@ -1,7 +1,7 @@
 package model;
 
 public enum AgeGroup {
-    group_6_8_years,
-    group_9_11_years,
-    group_12_15_years
+    GROUP_6_8_YEARS,
+    GROUP_9_11_YEARS,
+    GROUP_12_15_YEARS
 }
