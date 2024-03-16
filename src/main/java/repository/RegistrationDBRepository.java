@@ -22,6 +22,38 @@ public class RegistrationDBRepository implements RegistrationRepository {
         logger.info("initializing RegistrationDBRepository with properties: {} ", props);
         this.dbUtils = new JdbcUtils(props);
     }
+
+    @Override
+    public Iterable<Registration> findByAgeEvent(Long idAgeEvent) {
+        logger.traceEntry();
+        Connection con = dbUtils.getConnection();
+        List<Registration> registrations = new ArrayList<>();
+
+        try(PreparedStatement preparedStatement = con.prepareStatement("select * from registrations where id_age_event = ?")){
+
+            preparedStatement.setLong(1, idAgeEvent);
+            ResultSet result = preparedStatement.executeQuery();
+
+            while (result.next()) {
+                Long id = result.getLong("id");
+                Long idParticipant = result.getLong("id_participant");
+                Long idEmployee = result.getLong("id_employee");
+
+                Registration registration = new Registration(idParticipant, idAgeEvent, idEmployee);
+                registration.setId(id);
+
+                registrations.add(registration);
+            }
+
+        } catch (SQLException e) {
+            logger.error(e);
+            System.err.println("db error " + e);
+        }
+
+        logger.traceExit();
+        return registrations;
+    }
+
     @Override
     public Registration findOne(Long id) {
         logger.traceEntry();

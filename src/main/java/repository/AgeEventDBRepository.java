@@ -25,6 +25,38 @@ public class AgeEventDBRepository implements AgeEventRepository {
     }
 
     @Override
+    public Iterable<AgeEvent> findByAgeGroupAndSportsEvent(String ageGroup, String sportsEvent) {
+        logger.traceEntry();
+        Connection con = dbUtils.getConnection();
+        List<AgeEvent> ageEvents = new ArrayList<>();
+
+        try(PreparedStatement preparedStatement = con.prepareStatement("select * from age_events where age_group = ? and sports_event = ?")){
+
+            preparedStatement.setString(1, ageGroup);
+            preparedStatement.setString(2, sportsEvent);
+            ResultSet result = preparedStatement.executeQuery();
+
+            while (result.next()) {
+                Long id = result.getLong("id");
+                AgeGroup ageGroup1 = AgeGroup.valueOf(ageGroup);
+                SportsEvent sportsEvent1 = SportsEvent.valueOf(sportsEvent);
+
+                AgeEvent ageEvent = new AgeEvent(ageGroup1, sportsEvent1);
+                ageEvent.setId(id);
+
+                ageEvents.add(ageEvent);
+            }
+
+        } catch (SQLException e) {
+            logger.error(e);
+            System.err.println("db error " + e);
+        }
+
+        logger.traceExit();
+        return ageEvents;
+    }
+
+    @Override
     public AgeEvent findOne(Long id) {
         logger.traceEntry();
         Connection con = dbUtils.getConnection();
