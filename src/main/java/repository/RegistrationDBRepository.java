@@ -119,7 +119,7 @@ public class RegistrationDBRepository implements RegistrationRepository {
         logger.traceEntry("saving registration {}", entity);
         Connection con = dbUtils.getConnection();
 
-        try(PreparedStatement preparedStatement = con.prepareStatement("insert into registration (id, id_participant, id_age_event, id_employee) values (?, ?, ?, ?)")){
+        try(PreparedStatement preparedStatement = con.prepareStatement("insert into registrations (id, id_participant, id_age_event, id_employee) values (?, ?, ?, ?)")){
 
             preparedStatement.setLong(1, entity.getId());
             preparedStatement.setLong(2, entity.getIdParticipant());

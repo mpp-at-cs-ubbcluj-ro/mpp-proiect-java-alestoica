@@ -34,3 +34,291 @@
 15 Mar 2024 00:59:26,937 INFO  repository.JdbcUtils 27 getNewConnection - pass: null
 15 Mar 2024 00:59:26,937 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@41488b16)
 15 Mar 2024 00:59:26,938 TRACE repository.RegistrationDBRepository 81 findAll - Exit
+17 Mar 2024 16:14:40,164 INFO  repository.ParticipantDBRepository 21 <init> - initializing ParticipantDBRepository with properties: null 
+17 Mar 2024 16:14:40,537 TRACE repository.ParticipantDBRepository 87 add - Enter saving participant Participant { id=null, fistName=Jane, lastName=Doe, age=25 }
+17 Mar 2024 16:14:40,538 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 16:14:40,540 TRACE repository.JdbcUtils 19 getNewConnection - Enter
+17 Mar 2024 16:14:40,564 INFO  repository.ParticipantDBRepository 21 <init> - initializing ParticipantDBRepository with properties: null 
+17 Mar 2024 16:14:40,817 TRACE repository.ParticipantDBRepository 27 findOne - Enter
+17 Mar 2024 16:14:40,818 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 16:14:40,818 TRACE repository.JdbcUtils 19 getNewConnection - Enter
+17 Mar 2024 16:14:40,824 INFO  repository.ParticipantDBRepository 21 <init> - initializing ParticipantDBRepository with properties: null 
+17 Mar 2024 16:14:40,831 TRACE repository.ParticipantDBRepository 27 findOne - Enter
+17 Mar 2024 16:14:40,831 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 16:14:40,832 TRACE repository.JdbcUtils 19 getNewConnection - Enter
+17 Mar 2024 16:16:32,298 INFO  repository.ParticipantDBRepository 21 <init> - initializing ParticipantDBRepository with properties: null 
+17 Mar 2024 16:16:32,860 TRACE repository.ParticipantDBRepository 27 findOne - Enter
+17 Mar 2024 16:16:32,861 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 16:16:32,862 TRACE repository.JdbcUtils 19 getNewConnection - Enter
+17 Mar 2024 19:27:03,500 INFO  repository.ParticipantDBRepository 21 <init> - initializing ParticipantDBRepository with properties: {jdbc.url=jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db} 
+17 Mar 2024 19:27:03,506 TRACE repository.ParticipantDBRepository 57 findAll - Enter
+17 Mar 2024 19:27:03,507 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 19:27:03,507 TRACE repository.JdbcUtils 19 getNewConnection - Enter
+17 Mar 2024 19:27:03,507 INFO  repository.JdbcUtils 25 getNewConnection - trying to connect to database jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db
+17 Mar 2024 19:27:03,508 INFO  repository.JdbcUtils 26 getNewConnection - user: null
+17 Mar 2024 19:27:03,508 INFO  repository.JdbcUtils 27 getNewConnection - pass: null
+17 Mar 2024 19:27:03,695 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@5efa40fe)
+17 Mar 2024 19:27:03,704 TRACE repository.ParticipantDBRepository 81 findAll - Exit
+17 Mar 2024 19:27:03,711 INFO  repository.AgeEventDBRepository 23 <init> - initializing AgeEventDBRepository with properties: {jdbc.url=jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db} 
+17 Mar 2024 19:27:03,712 TRACE repository.AgeEventDBRepository 90 findAll - Enter
+17 Mar 2024 19:27:03,712 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 19:27:03,712 TRACE repository.JdbcUtils 19 getNewConnection - Enter
+17 Mar 2024 19:27:03,713 INFO  repository.JdbcUtils 25 getNewConnection - trying to connect to database jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db
+17 Mar 2024 19:27:03,713 INFO  repository.JdbcUtils 26 getNewConnection - user: null
+17 Mar 2024 19:27:03,713 INFO  repository.JdbcUtils 27 getNewConnection - pass: null
+17 Mar 2024 19:27:03,714 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@3e2055d6)
+17 Mar 2024 19:27:03,727 TRACE repository.AgeEventDBRepository 113 findAll - Exit
+17 Mar 2024 19:27:03,729 INFO  repository.EmployeeDBRepository 22 <init> - initializing EmployeeDBRepository with properties: {jdbc.url=jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db} 
+17 Mar 2024 19:27:03,729 TRACE repository.EmployeeDBRepository 59 findAll - Enter
+17 Mar 2024 19:27:03,729 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 19:27:03,729 TRACE repository.JdbcUtils 19 getNewConnection - Enter
+17 Mar 2024 19:27:03,730 INFO  repository.JdbcUtils 25 getNewConnection - trying to connect to database jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db
+17 Mar 2024 19:27:03,730 INFO  repository.JdbcUtils 26 getNewConnection - user: null
+17 Mar 2024 19:27:03,730 INFO  repository.JdbcUtils 27 getNewConnection - pass: null
+17 Mar 2024 19:27:03,731 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@5038d0b5)
+17 Mar 2024 19:27:03,732 TRACE repository.EmployeeDBRepository 84 findAll - Exit
+17 Mar 2024 19:27:03,737 INFO  repository.RegistrationDBRepository 22 <init> - initializing RegistrationDBRepository with properties: {jdbc.url=jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db} 
+17 Mar 2024 19:27:03,737 TRACE repository.RegistrationDBRepository 89 findAll - Enter
+17 Mar 2024 19:27:03,737 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 19:27:03,737 TRACE repository.JdbcUtils 19 getNewConnection - Enter
+17 Mar 2024 19:27:03,737 INFO  repository.JdbcUtils 25 getNewConnection - trying to connect to database jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db
+17 Mar 2024 19:27:03,738 INFO  repository.JdbcUtils 26 getNewConnection - user: null
+17 Mar 2024 19:27:03,738 INFO  repository.JdbcUtils 27 getNewConnection - pass: null
+17 Mar 2024 19:27:03,739 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@41488b16)
+17 Mar 2024 19:27:03,739 TRACE repository.RegistrationDBRepository 113 findAll - Exit
+17 Mar 2024 23:08:09,407 INFO  repository.ParticipantDBRepository 21 <init> - initializing ParticipantDBRepository with properties: {jdbc.url=jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db} 
+17 Mar 2024 23:08:09,412 TRACE repository.ParticipantDBRepository 57 findAll - Enter
+17 Mar 2024 23:08:09,412 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:08:09,413 TRACE repository.JdbcUtils 19 getNewConnection - Enter
+17 Mar 2024 23:08:09,413 INFO  repository.JdbcUtils 25 getNewConnection - trying to connect to database jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db
+17 Mar 2024 23:08:09,413 INFO  repository.JdbcUtils 26 getNewConnection - user: null
+17 Mar 2024 23:08:09,413 INFO  repository.JdbcUtils 27 getNewConnection - pass: null
+17 Mar 2024 23:08:09,586 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@5efa40fe)
+17 Mar 2024 23:08:09,594 TRACE repository.ParticipantDBRepository 81 findAll - Exit
+17 Mar 2024 23:08:09,600 INFO  repository.AgeEventDBRepository 23 <init> - initializing AgeEventDBRepository with properties: {jdbc.url=jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db} 
+17 Mar 2024 23:08:09,601 TRACE repository.AgeEventDBRepository 90 findAll - Enter
+17 Mar 2024 23:08:09,601 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:08:09,601 TRACE repository.JdbcUtils 19 getNewConnection - Enter
+17 Mar 2024 23:08:09,601 INFO  repository.JdbcUtils 25 getNewConnection - trying to connect to database jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db
+17 Mar 2024 23:08:09,601 INFO  repository.JdbcUtils 26 getNewConnection - user: null
+17 Mar 2024 23:08:09,601 INFO  repository.JdbcUtils 27 getNewConnection - pass: null
+17 Mar 2024 23:08:09,602 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@3e2055d6)
+17 Mar 2024 23:08:09,604 TRACE repository.AgeEventDBRepository 113 findAll - Exit
+17 Mar 2024 23:08:09,605 INFO  repository.EmployeeDBRepository 22 <init> - initializing EmployeeDBRepository with properties: {jdbc.url=jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db} 
+17 Mar 2024 23:08:09,605 TRACE repository.EmployeeDBRepository 59 findAll - Enter
+17 Mar 2024 23:08:09,605 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:08:09,606 TRACE repository.JdbcUtils 19 getNewConnection - Enter
+17 Mar 2024 23:08:09,606 INFO  repository.JdbcUtils 25 getNewConnection - trying to connect to database jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db
+17 Mar 2024 23:08:09,606 INFO  repository.JdbcUtils 26 getNewConnection - user: null
+17 Mar 2024 23:08:09,606 INFO  repository.JdbcUtils 27 getNewConnection - pass: null
+17 Mar 2024 23:08:09,607 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@5038d0b5)
+17 Mar 2024 23:08:09,607 TRACE repository.EmployeeDBRepository 84 findAll - Exit
+17 Mar 2024 23:08:09,611 INFO  repository.RegistrationDBRepository 22 <init> - initializing RegistrationDBRepository with properties: {jdbc.url=jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db} 
+17 Mar 2024 23:08:09,611 TRACE repository.RegistrationDBRepository 89 findAll - Enter
+17 Mar 2024 23:08:09,611 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:08:09,611 TRACE repository.JdbcUtils 19 getNewConnection - Enter
+17 Mar 2024 23:08:09,611 INFO  repository.JdbcUtils 25 getNewConnection - trying to connect to database jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db
+17 Mar 2024 23:08:09,611 INFO  repository.JdbcUtils 26 getNewConnection - user: null
+17 Mar 2024 23:08:09,611 INFO  repository.JdbcUtils 27 getNewConnection - pass: null
+17 Mar 2024 23:08:09,613 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@41488b16)
+17 Mar 2024 23:08:09,614 TRACE repository.RegistrationDBRepository 113 findAll - Exit
+17 Mar 2024 23:23:42,652 INFO  repository.ParticipantDBRepository 21 <init> - initializing ParticipantDBRepository with properties: {jdbc.url=jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db} 
+17 Mar 2024 23:23:42,658 TRACE repository.ParticipantDBRepository 27 findOne - Enter
+17 Mar 2024 23:23:42,659 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:23:42,659 TRACE repository.JdbcUtils 19 getNewConnection - Enter
+17 Mar 2024 23:23:42,659 INFO  repository.JdbcUtils 25 getNewConnection - trying to connect to database jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db
+17 Mar 2024 23:23:42,660 INFO  repository.JdbcUtils 26 getNewConnection - user: null
+17 Mar 2024 23:23:42,660 INFO  repository.JdbcUtils 27 getNewConnection - pass: null
+17 Mar 2024 23:23:42,815 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@5efa40fe)
+17 Mar 2024 23:23:42,822 TRACE repository.ParticipantDBRepository 43 findOne - Exit
+17 Mar 2024 23:23:42,828 TRACE repository.ParticipantDBRepository 57 findAll - Enter
+17 Mar 2024 23:23:42,828 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:23:42,828 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@5efa40fe)
+17 Mar 2024 23:23:42,830 TRACE repository.ParticipantDBRepository 81 findAll - Exit
+17 Mar 2024 23:23:42,831 TRACE repository.ParticipantDBRepository 87 add - Enter saving participant Participant { id=1111, fistName=Rachel, lastName=Zane, age=11 }
+17 Mar 2024 23:23:42,831 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:23:42,831 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@5efa40fe)
+17 Mar 2024 23:23:42,837 TRACE repository.ParticipantDBRepository 98 add - saved 1 instances
+17 Mar 2024 23:23:42,837 TRACE repository.ParticipantDBRepository 105 add - Exit
+17 Mar 2024 23:23:42,837 TRACE repository.ParticipantDBRepository 57 findAll - Enter
+17 Mar 2024 23:23:42,837 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:23:42,838 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@5efa40fe)
+17 Mar 2024 23:23:42,838 TRACE repository.ParticipantDBRepository 81 findAll - Exit
+17 Mar 2024 23:23:42,838 TRACE repository.ParticipantDBRepository 110 delete - Enter deleting participant with id 1111 
+17 Mar 2024 23:23:42,839 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:23:42,839 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@5efa40fe)
+17 Mar 2024 23:23:42,841 TRACE repository.ParticipantDBRepository 118 delete - deleted 1 instances
+17 Mar 2024 23:23:42,841 TRACE repository.ParticipantDBRepository 127 delete - Exit
+17 Mar 2024 23:23:42,843 INFO  repository.AgeEventDBRepository 23 <init> - initializing AgeEventDBRepository with properties: {jdbc.url=jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db} 
+17 Mar 2024 23:23:42,843 TRACE repository.AgeEventDBRepository 29 findByAgeGroupAndSportsEvent - Enter
+17 Mar 2024 23:23:42,843 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:23:42,843 TRACE repository.JdbcUtils 19 getNewConnection - Enter
+17 Mar 2024 23:23:42,844 INFO  repository.JdbcUtils 25 getNewConnection - trying to connect to database jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db
+17 Mar 2024 23:23:42,844 INFO  repository.JdbcUtils 26 getNewConnection - user: null
+17 Mar 2024 23:23:42,844 INFO  repository.JdbcUtils 27 getNewConnection - pass: null
+17 Mar 2024 23:23:42,846 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@2ad48653)
+17 Mar 2024 23:23:42,848 TRACE repository.AgeEventDBRepository 55 findByAgeGroupAndSportsEvent - Exit
+17 Mar 2024 23:23:42,848 TRACE repository.AgeEventDBRepository 61 findOne - Enter
+17 Mar 2024 23:23:42,848 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:23:42,849 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@2ad48653)
+17 Mar 2024 23:23:42,849 TRACE repository.AgeEventDBRepository 76 findOne - Exit
+17 Mar 2024 23:23:42,849 TRACE repository.AgeEventDBRepository 90 findAll - Enter
+17 Mar 2024 23:23:42,849 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:23:42,850 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@2ad48653)
+17 Mar 2024 23:23:42,850 TRACE repository.AgeEventDBRepository 113 findAll - Exit
+17 Mar 2024 23:23:42,851 INFO  repository.EmployeeDBRepository 22 <init> - initializing EmployeeDBRepository with properties: {jdbc.url=jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db} 
+17 Mar 2024 23:23:42,851 TRACE repository.EmployeeDBRepository 28 findOne - Enter
+17 Mar 2024 23:23:42,851 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:23:42,851 TRACE repository.JdbcUtils 19 getNewConnection - Enter
+17 Mar 2024 23:23:42,851 INFO  repository.JdbcUtils 25 getNewConnection - trying to connect to database jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db
+17 Mar 2024 23:23:42,851 INFO  repository.JdbcUtils 26 getNewConnection - user: null
+17 Mar 2024 23:23:42,852 INFO  repository.JdbcUtils 27 getNewConnection - pass: null
+17 Mar 2024 23:23:42,852 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@4a07d605)
+17 Mar 2024 23:23:42,853 TRACE repository.EmployeeDBRepository 45 findOne - Exit
+17 Mar 2024 23:23:42,857 TRACE repository.EmployeeDBRepository 59 findAll - Enter
+17 Mar 2024 23:23:42,857 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:23:42,857 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@4a07d605)
+17 Mar 2024 23:23:42,858 TRACE repository.EmployeeDBRepository 84 findAll - Exit
+17 Mar 2024 23:23:42,858 TRACE repository.EmployeeDBRepository 90 add - Enter saving employee Employee { id=1111, fistName=Rachel, lastName=Zane, username=rachel_zane, password=password }
+17 Mar 2024 23:23:42,858 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:23:42,858 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@4a07d605)
+17 Mar 2024 23:23:42,862 TRACE repository.EmployeeDBRepository 102 add - saved 1 instances
+17 Mar 2024 23:23:42,862 TRACE repository.EmployeeDBRepository 109 add - Exit
+17 Mar 2024 23:23:42,862 TRACE repository.ParticipantDBRepository 57 findAll - Enter
+17 Mar 2024 23:23:42,863 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:23:42,863 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@5efa40fe)
+17 Mar 2024 23:23:42,863 TRACE repository.ParticipantDBRepository 81 findAll - Exit
+17 Mar 2024 23:23:42,864 TRACE repository.EmployeeDBRepository 114 delete - Enter deleting employee with id 1111 
+17 Mar 2024 23:23:42,864 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:23:42,865 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@4a07d605)
+17 Mar 2024 23:23:42,867 TRACE repository.EmployeeDBRepository 122 delete - deleted 1 instances
+17 Mar 2024 23:23:42,867 TRACE repository.EmployeeDBRepository 131 delete - Exit
+17 Mar 2024 23:23:42,869 INFO  repository.RegistrationDBRepository 22 <init> - initializing RegistrationDBRepository with properties: {jdbc.url=jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db} 
+17 Mar 2024 23:23:42,869 TRACE repository.RegistrationDBRepository 59 findOne - Enter
+17 Mar 2024 23:23:42,869 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:23:42,869 TRACE repository.JdbcUtils 19 getNewConnection - Enter
+17 Mar 2024 23:23:42,869 INFO  repository.JdbcUtils 25 getNewConnection - trying to connect to database jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db
+17 Mar 2024 23:23:42,869 INFO  repository.JdbcUtils 26 getNewConnection - user: null
+17 Mar 2024 23:23:42,869 INFO  repository.JdbcUtils 27 getNewConnection - pass: null
+17 Mar 2024 23:23:42,871 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@79defdc)
+17 Mar 2024 23:23:42,872 TRACE repository.RegistrationDBRepository 75 findOne - Exit
+17 Mar 2024 23:23:42,873 TRACE repository.RegistrationDBRepository 89 findAll - Enter
+17 Mar 2024 23:23:42,874 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:23:42,874 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@79defdc)
+17 Mar 2024 23:23:42,874 TRACE repository.RegistrationDBRepository 113 findAll - Exit
+17 Mar 2024 23:23:42,876 TRACE repository.RegistrationDBRepository 119 add - Enter saving registration Registration { id=1111, idParticipant=56789, idAgeEvent=2, idEmployee=5432 }
+17 Mar 2024 23:23:42,876 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:23:42,876 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@79defdc)
+17 Mar 2024 23:23:42,878 ERROR repository.RegistrationDBRepository 133 add - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (no such table: registration)
+17 Mar 2024 23:23:42,878 TRACE repository.RegistrationDBRepository 137 add - Exit
+17 Mar 2024 23:23:42,878 TRACE repository.RegistrationDBRepository 89 findAll - Enter
+17 Mar 2024 23:23:42,878 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:23:42,878 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@79defdc)
+17 Mar 2024 23:23:42,879 TRACE repository.RegistrationDBRepository 113 findAll - Exit
+17 Mar 2024 23:23:42,879 TRACE repository.RegistrationDBRepository 142 delete - Enter deleting registration with id 1111 
+17 Mar 2024 23:23:42,879 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:23:42,879 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@79defdc)
+17 Mar 2024 23:23:42,880 TRACE repository.RegistrationDBRepository 150 delete - deleted 0 instances
+17 Mar 2024 23:23:42,880 TRACE repository.RegistrationDBRepository 159 delete - Exit
+17 Mar 2024 23:27:44,054 INFO  repository.ParticipantDBRepository 21 <init> - initializing ParticipantDBRepository with properties: {jdbc.url=jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db} 
+17 Mar 2024 23:27:44,060 TRACE repository.ParticipantDBRepository 27 findOne - Enter
+17 Mar 2024 23:27:44,060 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:27:44,060 TRACE repository.JdbcUtils 19 getNewConnection - Enter
+17 Mar 2024 23:27:44,061 INFO  repository.JdbcUtils 25 getNewConnection - trying to connect to database jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db
+17 Mar 2024 23:27:44,061 INFO  repository.JdbcUtils 26 getNewConnection - user: null
+17 Mar 2024 23:27:44,061 INFO  repository.JdbcUtils 27 getNewConnection - pass: null
+17 Mar 2024 23:27:44,211 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@5efa40fe)
+17 Mar 2024 23:27:44,218 TRACE repository.ParticipantDBRepository 43 findOne - Exit
+17 Mar 2024 23:27:44,224 TRACE repository.ParticipantDBRepository 57 findAll - Enter
+17 Mar 2024 23:27:44,224 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:27:44,225 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@5efa40fe)
+17 Mar 2024 23:27:44,226 TRACE repository.ParticipantDBRepository 81 findAll - Exit
+17 Mar 2024 23:27:44,226 TRACE repository.ParticipantDBRepository 87 add - Enter saving participant Participant { id=1111, fistName=Rachel, lastName=Zane, age=11 }
+17 Mar 2024 23:27:44,228 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:27:44,228 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@5efa40fe)
+17 Mar 2024 23:27:44,233 TRACE repository.ParticipantDBRepository 98 add - saved 1 instances
+17 Mar 2024 23:27:44,234 TRACE repository.ParticipantDBRepository 105 add - Exit
+17 Mar 2024 23:27:44,234 TRACE repository.ParticipantDBRepository 57 findAll - Enter
+17 Mar 2024 23:27:44,234 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:27:44,234 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@5efa40fe)
+17 Mar 2024 23:27:44,234 TRACE repository.ParticipantDBRepository 81 findAll - Exit
+17 Mar 2024 23:27:44,235 TRACE repository.ParticipantDBRepository 110 delete - Enter deleting participant with id 1111 
+17 Mar 2024 23:27:44,235 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:27:44,235 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@5efa40fe)
+17 Mar 2024 23:27:44,240 TRACE repository.ParticipantDBRepository 118 delete - deleted 1 instances
+17 Mar 2024 23:27:44,240 TRACE repository.ParticipantDBRepository 127 delete - Exit
+17 Mar 2024 23:27:44,241 INFO  repository.AgeEventDBRepository 23 <init> - initializing AgeEventDBRepository with properties: {jdbc.url=jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db} 
+17 Mar 2024 23:27:44,241 TRACE repository.AgeEventDBRepository 29 findByAgeGroupAndSportsEvent - Enter
+17 Mar 2024 23:27:44,241 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:27:44,241 TRACE repository.JdbcUtils 19 getNewConnection - Enter
+17 Mar 2024 23:27:44,242 INFO  repository.JdbcUtils 25 getNewConnection - trying to connect to database jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db
+17 Mar 2024 23:27:44,242 INFO  repository.JdbcUtils 26 getNewConnection - user: null
+17 Mar 2024 23:27:44,242 INFO  repository.JdbcUtils 27 getNewConnection - pass: null
+17 Mar 2024 23:27:44,243 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@2ad48653)
+17 Mar 2024 23:27:44,245 TRACE repository.AgeEventDBRepository 55 findByAgeGroupAndSportsEvent - Exit
+17 Mar 2024 23:27:44,246 TRACE repository.AgeEventDBRepository 61 findOne - Enter
+17 Mar 2024 23:27:44,246 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:27:44,246 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@2ad48653)
+17 Mar 2024 23:27:44,246 TRACE repository.AgeEventDBRepository 76 findOne - Exit
+17 Mar 2024 23:27:44,246 TRACE repository.AgeEventDBRepository 90 findAll - Enter
+17 Mar 2024 23:27:44,246 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:27:44,246 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@2ad48653)
+17 Mar 2024 23:27:44,247 TRACE repository.AgeEventDBRepository 113 findAll - Exit
+17 Mar 2024 23:27:44,248 INFO  repository.EmployeeDBRepository 22 <init> - initializing EmployeeDBRepository with properties: {jdbc.url=jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db} 
+17 Mar 2024 23:27:44,248 TRACE repository.EmployeeDBRepository 28 findOne - Enter
+17 Mar 2024 23:27:44,248 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:27:44,248 TRACE repository.JdbcUtils 19 getNewConnection - Enter
+17 Mar 2024 23:27:44,248 INFO  repository.JdbcUtils 25 getNewConnection - trying to connect to database jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db
+17 Mar 2024 23:27:44,248 INFO  repository.JdbcUtils 26 getNewConnection - user: null
+17 Mar 2024 23:27:44,248 INFO  repository.JdbcUtils 27 getNewConnection - pass: null
+17 Mar 2024 23:27:44,250 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@4a07d605)
+17 Mar 2024 23:27:44,251 TRACE repository.EmployeeDBRepository 45 findOne - Exit
+17 Mar 2024 23:27:44,254 TRACE repository.EmployeeDBRepository 59 findAll - Enter
+17 Mar 2024 23:27:44,254 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:27:44,254 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@4a07d605)
+17 Mar 2024 23:27:44,255 TRACE repository.EmployeeDBRepository 84 findAll - Exit
+17 Mar 2024 23:27:44,256 TRACE repository.EmployeeDBRepository 90 add - Enter saving employee Employee { id=1111, fistName=Rachel, lastName=Zane, username=rachel_zane, password=password }
+17 Mar 2024 23:27:44,256 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:27:44,256 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@4a07d605)
+17 Mar 2024 23:27:44,259 TRACE repository.EmployeeDBRepository 102 add - saved 1 instances
+17 Mar 2024 23:27:44,259 TRACE repository.EmployeeDBRepository 109 add - Exit
+17 Mar 2024 23:27:44,260 TRACE repository.EmployeeDBRepository 59 findAll - Enter
+17 Mar 2024 23:27:44,260 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:27:44,260 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@4a07d605)
+17 Mar 2024 23:27:44,261 TRACE repository.EmployeeDBRepository 84 findAll - Exit
+17 Mar 2024 23:27:44,261 TRACE repository.EmployeeDBRepository 114 delete - Enter deleting employee with id 1111 
+17 Mar 2024 23:27:44,261 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:27:44,263 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@4a07d605)
+17 Mar 2024 23:27:44,266 TRACE repository.EmployeeDBRepository 122 delete - deleted 1 instances
+17 Mar 2024 23:27:44,266 TRACE repository.EmployeeDBRepository 131 delete - Exit
+17 Mar 2024 23:27:44,267 INFO  repository.RegistrationDBRepository 22 <init> - initializing RegistrationDBRepository with properties: {jdbc.url=jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db} 
+17 Mar 2024 23:27:44,267 TRACE repository.RegistrationDBRepository 28 findByAgeEvent - Enter
+17 Mar 2024 23:27:44,267 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:27:44,267 TRACE repository.JdbcUtils 19 getNewConnection - Enter
+17 Mar 2024 23:27:44,267 INFO  repository.JdbcUtils 25 getNewConnection - trying to connect to database jdbc:sqlite:C:\Users\alest\IdeaProjects\mpp\mpp-proiect-java-alestoica\data\competition.db
+17 Mar 2024 23:27:44,268 INFO  repository.JdbcUtils 26 getNewConnection - user: null
+17 Mar 2024 23:27:44,268 INFO  repository.JdbcUtils 27 getNewConnection - pass: null
+17 Mar 2024 23:27:44,269 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@79defdc)
+17 Mar 2024 23:27:44,270 TRACE repository.RegistrationDBRepository 53 findByAgeEvent - Exit
+17 Mar 2024 23:27:44,271 TRACE repository.RegistrationDBRepository 59 findOne - Enter
+17 Mar 2024 23:27:44,273 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:27:44,273 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@79defdc)
+17 Mar 2024 23:27:44,273 TRACE repository.RegistrationDBRepository 75 findOne - Exit
+17 Mar 2024 23:27:44,273 TRACE repository.RegistrationDBRepository 89 findAll - Enter
+17 Mar 2024 23:27:44,273 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:27:44,274 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@79defdc)
+17 Mar 2024 23:27:44,274 TRACE repository.RegistrationDBRepository 113 findAll - Exit
+17 Mar 2024 23:27:44,274 TRACE repository.RegistrationDBRepository 119 add - Enter saving registration Registration { id=1111, idParticipant=56789, idAgeEvent=2, idEmployee=5432 }
+17 Mar 2024 23:27:44,274 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:27:44,275 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@79defdc)
+17 Mar 2024 23:27:44,277 ERROR repository.RegistrationDBRepository 133 add - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (no such table: registration)
+17 Mar 2024 23:27:44,277 TRACE repository.RegistrationDBRepository 137 add - Exit
+17 Mar 2024 23:27:44,277 TRACE repository.RegistrationDBRepository 89 findAll - Enter
+17 Mar 2024 23:27:44,277 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:27:44,278 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@79defdc)
+17 Mar 2024 23:27:44,278 TRACE repository.RegistrationDBRepository 113 findAll - Exit
+17 Mar 2024 23:27:44,278 TRACE repository.RegistrationDBRepository 142 delete - Enter deleting registration with id 1111 
+17 Mar 2024 23:27:44,278 TRACE repository.JdbcUtils 44 getConnection - Enter
+17 Mar 2024 23:27:44,279 TRACE repository.JdbcUtils 54 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@79defdc)
+17 Mar 2024 23:27:44,279 TRACE repository.RegistrationDBRepository 150 delete - deleted 0 instances
+17 Mar 2024 23:27:44,279 TRACE repository.RegistrationDBRepository 159 delete - Exit
