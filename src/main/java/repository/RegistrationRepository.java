@@ -1,9 +1,10 @@
 package repository;
 
-import model.AgeGroup;
 import model.Registration;
-import model.SportsEvent;
+
+import java.util.Collection;
 
 public interface RegistrationRepository extends Repository<Long, Registration> {
-    public Iterable<Registration> findByAgeEvent(Long idAgeEvent);
+    Collection<Registration> findByAgeEvent(Long idAgeEvent);
+    Collection<Registration> findByParticipant(Long idParticipant);
 }

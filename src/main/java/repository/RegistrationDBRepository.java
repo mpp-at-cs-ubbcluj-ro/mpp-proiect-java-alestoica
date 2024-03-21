@@ -4,6 +4,7 @@ import model.Participant;
 import model.Registration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import validators.RegistrationValidator;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,14 +18,16 @@ import java.util.Properties;
 public class RegistrationDBRepository implements RegistrationRepository {
     private JdbcUtils dbUtils;
     private static final Logger logger = LogManager.getLogger();
+    private RegistrationValidator validator;
 
     public RegistrationDBRepository(Properties props) {
         logger.info("initializing RegistrationDBRepository with properties: {} ", props);
-        this.dbUtils = new JdbcUtils(props);
+        dbUtils = new JdbcUtils(props);
+        validator = new RegistrationValidator();
     }
 
     @Override
-    public Iterable<Registration> findByAgeEvent(Long idAgeEvent) {
+    public Collection<Registration> findByAgeEvent(Long idAgeEvent) {
         logger.traceEntry();
         Connection con = dbUtils.getConnection();
         List<Registration> registrations = new ArrayList<>();
@@ -37,6 +40,37 @@ public class RegistrationDBRepository implements RegistrationRepository {
             while (result.next()) {
                 Long id = result.getLong("id");
                 Long idParticipant = result.getLong("id_participant");
+                Long idEmployee = result.getLong("id_employee");
+
+                Registration registration = new Registration(idParticipant, idAgeEvent, idEmployee);
+                registration.setId(id);
+
+                registrations.add(registration);
+            }
+
+        } catch (SQLException e) {
+            logger.error(e);
+            System.err.println("db error " + e);
+        }
+
+        logger.traceExit();
+        return registrations;
+    }
+
+    @Override
+    public Collection<Registration> findByParticipant(Long idParticipant) {
+        logger.traceEntry();
+        Connection con = dbUtils.getConnection();
+        List<Registration> registrations = new ArrayList<>();
+
+        try(PreparedStatement preparedStatement = con.prepareStatement("select * from registrations where id_participant = ?")){
+
+            preparedStatement.setLong(1, idParticipant);
+            ResultSet result = preparedStatement.executeQuery();
+
+            while (result.next()) {
+                Long id = result.getLong("id");
+                Long idAgeEvent = result.getLong("id_age_event");
                 Long idEmployee = result.getLong("id_employee");
 
                 Registration registration = new Registration(idParticipant, idAgeEvent, idEmployee);
@@ -126,6 +160,8 @@ public class RegistrationDBRepository implements RegistrationRepository {
             preparedStatement.setLong(3, entity.getIdAgeEvent());
             preparedStatement.setLong(4, entity.getIdEmployee());
 
+            validator.validate(entity);
+
             int result = preparedStatement.executeUpdate();
             logger.trace("saved {} instances", result);
 
@@ -171,6 +207,8 @@ public class RegistrationDBRepository implements RegistrationRepository {
             preparedStatement.setLong(3, entity.getIdEmployee());
             preparedStatement.setLong(4, id);
 
+            validator.validate(entity);
+
             int result = preparedStatement.executeUpdate();
             logger.trace("updated {} instances", result);
 
@@ -184,6 +222,31 @@ public class RegistrationDBRepository implements RegistrationRepository {
 
     @Override
     public Collection<Registration> getAll() {
-        return null;
+        logger.traceEntry();
+        Connection con = dbUtils.getConnection();
+        List<Registration> registrations = new ArrayList<>();
+
+        try(PreparedStatement preparedStatement = con.prepareStatement("select * from registrations");
+            ResultSet result = preparedStatement.executeQuery();){
+
+            while (result.next()) {
+                Long id = result.getLong("id");
+                Long idParticipant = result.getLong("id_participant");
+                Long idEmployee = result.getLong("id_employee");
+                Long idAgeEvent = result.getLong("id_age_event");
+
+                Registration registration = new Registration(idParticipant, idAgeEvent, idEmployee);
+                registration.setId(id);
+
+                registrations.add(registration);
+            }
+
+        } catch (SQLException e) {
+            logger.error(e);
+            System.err.println("db error " + e);
+        }
+
+        logger.traceExit();
+        return registrations;
     }
 }

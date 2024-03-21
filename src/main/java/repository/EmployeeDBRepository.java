@@ -4,6 +4,7 @@ import model.Employee;
 import model.Participant;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import validators.EmployeeValidator;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,10 +18,42 @@ import java.util.Properties;
 public class EmployeeDBRepository implements EmployeeRepository {
     private JdbcUtils dbUtils;
     private static final Logger logger = LogManager.getLogger();
+    private EmployeeValidator validator;
 
     public EmployeeDBRepository(Properties props) {
         logger.info("initializing EmployeeDBRepository with properties: {} ", props);
-        this.dbUtils = new JdbcUtils(props);
+        dbUtils = new JdbcUtils(props);
+        validator = new EmployeeValidator();
+    }
+
+    public Employee findOneByUsernameAndPassword(String username, String password) {
+        logger.traceEntry();
+        Connection con = dbUtils.getConnection();
+
+        try(PreparedStatement preparedStatement = con.prepareStatement("select * from employees where username = ? and password = ?")){
+
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            ResultSet result = preparedStatement.executeQuery();
+
+            if (result.next()) {
+                Long id = result.getLong("id");
+                String firstName = result.getString("first_name");
+                String lastName = result.getString("last_name");
+
+                Employee employee = new Employee(firstName, lastName, username, password);
+                employee.setId(id);
+
+                logger.traceExit();
+                return employee;
+            }
+
+        } catch (SQLException e) {
+            logger.error(e);
+            System.err.println("db error " + e);
+            logger.traceExit();
+        }
+        return null;
     }
 
     @Override
@@ -98,6 +131,8 @@ public class EmployeeDBRepository implements EmployeeRepository {
             preparedStatement.setString(4, entity.getUsername());
             preparedStatement.setString(5, entity.getPassword());
 
+            validator.validate(entity);
+
             int result = preparedStatement.executeUpdate();
             logger.trace("saved {} instances", result);
 
@@ -144,6 +179,8 @@ public class EmployeeDBRepository implements EmployeeRepository {
             preparedStatement.setString(4, entity.getPassword());
             preparedStatement.setLong(5, id);
 
+            validator.validate(entity);
+
             int result = preparedStatement.executeUpdate();
             logger.trace("updated {} instances", result);
 
@@ -157,6 +194,32 @@ public class EmployeeDBRepository implements EmployeeRepository {
 
     @Override
     public Collection<Employee> getAll() {
-        return null;
+        logger.traceEntry();
+        Connection con = dbUtils.getConnection();
+        List<Employee> employees = new ArrayList<>();
+
+        try(PreparedStatement preparedStatement = con.prepareStatement("select * from employees");
+            ResultSet result = preparedStatement.executeQuery();){
+
+            while (result.next()) {
+                Long id = result.getLong("id");
+                String firstName = result.getString("first_name");
+                String lastName = result.getString("last_name");
+                String username = result.getString("username");
+                String password = result.getString("password");
+
+                Employee employee = new Employee(firstName, lastName, username, password);
+                employee.setId(id);
+
+                employees.add(employee);
+            }
+
+        } catch (SQLException e) {
+            logger.error(e);
+            System.err.println("db error " + e);
+        }
+
+        logger.traceExit();
+        return employees;
     }
 }

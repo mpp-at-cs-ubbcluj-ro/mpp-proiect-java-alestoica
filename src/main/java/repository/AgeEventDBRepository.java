@@ -5,6 +5,7 @@ import model.AgeGroup;
 import model.SportsEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import validators.AgeEventValidator;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,17 +19,18 @@ import java.util.Properties;
 public class AgeEventDBRepository implements AgeEventRepository {
     private JdbcUtils dbUtils;
     private static final Logger logger = LogManager.getLogger();
+    private AgeEventValidator validator;
 
     public AgeEventDBRepository(Properties props) {
         logger.info("initializing AgeEventDBRepository with properties: {} ", props);
-        this.dbUtils = new JdbcUtils(props);
+        dbUtils = new JdbcUtils(props);
+        validator = new AgeEventValidator();
     }
 
     @Override
-    public Iterable<AgeEvent> findByAgeGroupAndSportsEvent(String ageGroup, String sportsEvent) {
+    public AgeEvent findByAgeGroupAndSportsEvent(String ageGroup, String sportsEvent) {
         logger.traceEntry();
         Connection con = dbUtils.getConnection();
-        List<AgeEvent> ageEvents = new ArrayList<>();
 
         try(PreparedStatement preparedStatement = con.prepareStatement("select * from age_events where age_group = ? and sports_event = ?")){
 
@@ -36,7 +38,7 @@ public class AgeEventDBRepository implements AgeEventRepository {
             preparedStatement.setString(2, sportsEvent);
             ResultSet result = preparedStatement.executeQuery();
 
-            while (result.next()) {
+            if (result.next()) {
                 Long id = result.getLong("id");
                 AgeGroup ageGroup1 = AgeGroup.valueOf(ageGroup);
                 SportsEvent sportsEvent1 = SportsEvent.valueOf(sportsEvent);
@@ -44,16 +46,16 @@ public class AgeEventDBRepository implements AgeEventRepository {
                 AgeEvent ageEvent = new AgeEvent(ageGroup1, sportsEvent1);
                 ageEvent.setId(id);
 
-                ageEvents.add(ageEvent);
+                logger.traceExit();
+                return ageEvent;
             }
 
         } catch (SQLException e) {
             logger.error(e);
             System.err.println("db error " + e);
+            logger.traceExit();
         }
-
-        logger.traceExit();
-        return ageEvents;
+        return null;
     }
 
     @Override
@@ -125,6 +127,8 @@ public class AgeEventDBRepository implements AgeEventRepository {
             preparedStatement.setString(2, entity.getAgeGroup().toString());
             preparedStatement.setString(3, entity.getSportsEvent().toString());
 
+            validator.validate(entity);
+
             int result = preparedStatement.executeUpdate();
             logger.trace("saved {} instances", result);
 
@@ -169,6 +173,8 @@ public class AgeEventDBRepository implements AgeEventRepository {
             preparedStatement.setString(2, entity.getSportsEvent().toString());
             preparedStatement.setLong(3, id);
 
+            validator.validate(entity);
+
             int result = preparedStatement.executeUpdate();
             logger.trace("updated {} instances", result);
 
@@ -182,6 +188,30 @@ public class AgeEventDBRepository implements AgeEventRepository {
 
     @Override
     public Collection<AgeEvent> getAll() {
-        return null;
+        logger.traceEntry();
+        Connection con = dbUtils.getConnection();
+        List<AgeEvent> ageEvents = new ArrayList<>();
+
+        try(PreparedStatement preparedStatement = con.prepareStatement("select * from age_events");
+            ResultSet result = preparedStatement.executeQuery();){
+
+            while (result.next()) {
+                Long id = result.getLong("id");
+                AgeGroup ageGroup = AgeGroup.valueOf(result.getString("age_group"));
+                SportsEvent sportsEvent = SportsEvent.valueOf(result.getString("sports_event"));
+
+                AgeEvent ageEvent = new AgeEvent(ageGroup, sportsEvent);
+                ageEvent.setId(id);
+
+                ageEvents.add(ageEvent);
+            }
+
+        } catch (SQLException e) {
+            logger.error(e);
+            System.err.println("db error " + e);
+        }
+
+        logger.traceExit();
+        return ageEvents;
     }
 }
