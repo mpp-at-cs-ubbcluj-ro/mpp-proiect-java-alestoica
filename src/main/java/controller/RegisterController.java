@@ -1,3 +1,5 @@
+package controller;
+
 import controller.MessageAlert;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -48,16 +50,20 @@ public class RegisterController {
             ages.add(i);
         }
 
+        comboBoxAge.getItems().setAll(ages);
+
         if (currentParticipant != null) {
             textFieldFirstName.setText(currentParticipant.getFirstName());
             textFieldLastName.setText(currentParticipant.getLastName());
-            comboBoxAge.getSelectionModel().select(currentParticipant.getAge());
+            comboBoxAge.getSelectionModel().select(currentParticipant.getAge() - 6);
+        }
+        else {
+            comboBoxAge.getSelectionModel().selectFirst();
         }
 
-        comboBoxAge.getItems().setAll(ages);
-        comboBoxAge.getSelectionModel().selectFirst();
         comboBoxAge.setOnAction(event -> {
             int age = comboBoxAge.getSelectionModel().getSelectedItem();
+            System.out.println(age);
 
             List<String> events = new ArrayList<>();
             if (age >= 6 && age <= 8) {
@@ -72,6 +78,7 @@ public class RegisterController {
             }
 
             comboBoxEvent.getItems().setAll(events);
+            comboBoxEvent.getSelectionModel().selectFirst();
         });
 
         List<String> events = new ArrayList<>();

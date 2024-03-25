@@ -1,6 +1,5 @@
 package repository;
 
-import model.Participant;
 import model.Registration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,10 +19,10 @@ public class RegistrationDBRepository implements RegistrationRepository {
     private static final Logger logger = LogManager.getLogger();
     private RegistrationValidator validator;
 
-    public RegistrationDBRepository(Properties props) {
+    public RegistrationDBRepository(RegistrationValidator validator, Properties props) {
         logger.info("initializing RegistrationDBRepository with properties: {} ", props);
-        dbUtils = new JdbcUtils(props);
-        validator = new RegistrationValidator();
+        this.dbUtils = new JdbcUtils(props);
+        this.validator = validator;
     }
 
     @Override
@@ -32,7 +31,7 @@ public class RegistrationDBRepository implements RegistrationRepository {
         Connection con = dbUtils.getConnection();
         List<Registration> registrations = new ArrayList<>();
 
-        try(PreparedStatement preparedStatement = con.prepareStatement("select * from registrations where id_age_event = ?")){
+        try (PreparedStatement preparedStatement = con.prepareStatement("select * from registrations where id_age_event = ?")) {
 
             preparedStatement.setLong(1, idAgeEvent);
             ResultSet result = preparedStatement.executeQuery();
@@ -63,7 +62,7 @@ public class RegistrationDBRepository implements RegistrationRepository {
         Connection con = dbUtils.getConnection();
         List<Registration> registrations = new ArrayList<>();
 
-        try(PreparedStatement preparedStatement = con.prepareStatement("select * from registrations where id_participant = ?")){
+        try (PreparedStatement preparedStatement = con.prepareStatement("select * from registrations where id_participant = ?")) {
 
             preparedStatement.setLong(1, idParticipant);
             ResultSet result = preparedStatement.executeQuery();
@@ -93,7 +92,7 @@ public class RegistrationDBRepository implements RegistrationRepository {
         logger.traceEntry();
         Connection con = dbUtils.getConnection();
 
-        try(PreparedStatement preparedStatement = con.prepareStatement("select * from registrations where id = ?")){
+        try (PreparedStatement preparedStatement = con.prepareStatement("select * from registrations where id = ?")) {
 
             preparedStatement.setLong(1, id);
             ResultSet result = preparedStatement.executeQuery();
@@ -124,8 +123,8 @@ public class RegistrationDBRepository implements RegistrationRepository {
         Connection con = dbUtils.getConnection();
         List<Registration> registrations = new ArrayList<>();
 
-        try(PreparedStatement preparedStatement = con.prepareStatement("select * from registrations");
-            ResultSet result = preparedStatement.executeQuery();){
+        try (PreparedStatement preparedStatement = con.prepareStatement("select * from registrations");
+             ResultSet result = preparedStatement.executeQuery();) {
 
             while (result.next()) {
                 Long id = result.getLong("id");
@@ -153,7 +152,7 @@ public class RegistrationDBRepository implements RegistrationRepository {
         logger.traceEntry("saving registration {}", entity);
         Connection con = dbUtils.getConnection();
 
-        try(PreparedStatement preparedStatement = con.prepareStatement("insert into registrations (id, id_participant, id_age_event, id_employee) values (?, ?, ?, ?)")){
+        try (PreparedStatement preparedStatement = con.prepareStatement("insert into registrations (id, id_participant, id_age_event, id_employee) values (?, ?, ?, ?)")) {
 
             preparedStatement.setLong(1, entity.getId());
             preparedStatement.setLong(2, entity.getIdParticipant());
@@ -178,7 +177,7 @@ public class RegistrationDBRepository implements RegistrationRepository {
         logger.traceEntry("deleting registration with id {} ", id);
         Connection con = dbUtils.getConnection();
 
-        try(PreparedStatement preparedStatement = con.prepareStatement("delete from registrations where id = ?")){
+        try (PreparedStatement preparedStatement = con.prepareStatement("delete from registrations where id = ?")) {
 
             preparedStatement.setLong(1, id);
 
@@ -200,7 +199,7 @@ public class RegistrationDBRepository implements RegistrationRepository {
         logger.traceEntry("updating participant with id {}", id);
         Connection con = dbUtils.getConnection();
 
-        try(PreparedStatement preparedStatement = con.prepareStatement("update registrations set id_participant = ?, id_age_event = ?, id_employee = ? where id = ?")){
+        try (PreparedStatement preparedStatement = con.prepareStatement("update registrations set id_participant = ?, id_age_event = ?, id_employee = ? where id = ?")) {
 
             preparedStatement.setLong(1, entity.getIdParticipant());
             preparedStatement.setLong(2, entity.getIdAgeEvent());
@@ -226,8 +225,8 @@ public class RegistrationDBRepository implements RegistrationRepository {
         Connection con = dbUtils.getConnection();
         List<Registration> registrations = new ArrayList<>();
 
-        try(PreparedStatement preparedStatement = con.prepareStatement("select * from registrations");
-            ResultSet result = preparedStatement.executeQuery();){
+        try (PreparedStatement preparedStatement = con.prepareStatement("select * from registrations");
+             ResultSet result = preparedStatement.executeQuery();) {
 
             while (result.next()) {
                 Long id = result.getLong("id");

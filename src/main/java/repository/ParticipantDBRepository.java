@@ -4,6 +4,7 @@ import model.Participant;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import validators.ParticipantValidator;
+import validators.Validator;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,10 +20,10 @@ public class ParticipantDBRepository implements ParticipantRepository {
     private static final Logger logger = LogManager.getLogger();
     private ParticipantValidator validator;
 
-    public ParticipantDBRepository(Properties props) {
+    public ParticipantDBRepository(ParticipantValidator validator, Properties props) {
         logger.info("initializing ParticipantDBRepository with properties: {} ", props);
-        dbUtils = new JdbcUtils(props);
-        validator = new ParticipantValidator();
+        this.dbUtils = new JdbcUtils(props);
+        this.validator = validator;
     }
 
     @Override

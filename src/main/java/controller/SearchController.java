@@ -1,3 +1,5 @@
+package controller;
+
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -7,10 +9,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.AgeEvent;
-import model.Employee;
 import model.Participant;
 import model.Registration;
-import service.AgeEventService;
 import service.ParticipantService;
 import service.RegistrationService;
 
@@ -21,7 +21,13 @@ public class SearchController {
     ParticipantService participantService;
     RegistrationService registrationService;
     @FXML
-    Label titleLabel;
+    Label titleLabel1;
+    @FXML
+    Label titleLabel2;
+    @FXML
+    Label titleLabel3;
+    @FXML
+    Label titleLabel4;
     ObservableList<Participant> model = FXCollections.observableArrayList();
     @FXML
     TableView<Participant> tableView;
@@ -44,7 +50,10 @@ public class SearchController {
 
         String meters = currentAgeEvent.getSportsEvent().toString().split("_")[1];
 
-        this.titleLabel.setText("Participants registered for\nage group " + minAge + " - " + maxAge + "\nand for\n" + meters + " meters:");
+        this.titleLabel1.setText("Participants registered for");
+        this.titleLabel2.setText("age group " + minAge + " - " + maxAge);
+        this.titleLabel3.setText("and for");
+        this.titleLabel4.setText(meters + " meters:");
 
         initModel();
     }

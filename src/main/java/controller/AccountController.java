@@ -1,3 +1,5 @@
+package controller;
+
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -96,7 +98,7 @@ public class AccountController {
     private void handleSearch() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("search-view.fxml"));
+            loader.setLocation(getClass().getResource("../view/search-view.fxml"));
             AnchorPane layout = loader.load();
 
             Stage dialogStage = new Stage();
@@ -121,7 +123,7 @@ public class AccountController {
     private void handleRegister() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("register-view.fxml"));
+            loader.setLocation(getClass().getResource("../view/register-view.fxml"));
             AnchorPane layout = loader.load();
 
             Stage dialogStage = new Stage();

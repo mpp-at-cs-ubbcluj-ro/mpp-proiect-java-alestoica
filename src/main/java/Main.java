@@ -1,25 +1,29 @@
+import config.AgeEventConfig;
+import config.EmployeeConfig;
+import config.ParticipantConfig;
+import config.RegistrationConfig;
+import controller.LogInController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import repository.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import service.AgeEventService;
 import service.EmployeeService;
 import service.ParticipantService;
 import service.RegistrationService;
 
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.Properties;
 
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("login-view.fxml"));
+            loader.setLocation(getClass().getResource("view/login-view.fxml"));
             AnchorPane layout = loader.load();
 
             Stage dialogStage = new Stage();
@@ -29,33 +33,33 @@ public class Main extends Application {
 
             LogInController logInController = loader.getController();
 
-            Properties props = new Properties();
-
-            try {
-                props.load(new FileReader("bd.config"));
-            } catch (IOException e) {
-                System.out.println("cannot find bd.config " + e);
-            }
-
-            ParticipantRepository participantRepository = new ParticipantDBRepository(props);
-            ParticipantService participantService = new ParticipantService(participantRepository);
-
-            EmployeeRepository employeeRepository = new EmployeeDBRepository(props);
-            EmployeeService employeeService = new EmployeeService(employeeRepository);
-
-            AgeEventRepository ageEventRepository = new AgeEventDBRepository(props);
-            AgeEventService ageEventService = new AgeEventService(ageEventRepository);
-
-            RegistrationRepository registrationRepository = new RegistrationDBRepository(props);
-            RegistrationService registrationService = new RegistrationService(registrationRepository);
-
-            logInController.setServices(participantService, employeeService, ageEventService, registrationService);
+            logInController.setServices(getParticipantService(), getEmployeeService(), getAgeEventService(), getRegistrationService());
 
             dialogStage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    static ParticipantService getParticipantService() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(ParticipantConfig.class);
+        return context.getBean(ParticipantService.class);
+    }
+
+    static EmployeeService getEmployeeService() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(EmployeeConfig.class);
+        return context.getBean(EmployeeService.class);
+    }
+
+    static AgeEventService getAgeEventService() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(AgeEventConfig.class);
+        return context.getBean(AgeEventService.class);
+    }
+
+    static RegistrationService getRegistrationService() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(RegistrationConfig.class);
+        return context.getBean(RegistrationService.class);
     }
 
     public static void main(String[] args) {

@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="RegisterController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterController">
 
-    <Button onAction="#handleRegister" layoutX="270.0" layoutY="342.0" mnemonicParsing="false" text="Register" />
+    <Button layoutX="270.0" layoutY="342.0" mnemonicParsing="false" onAction="#handleRegister" text="Register" />
     <ComboBox fx:id="comboBoxAge" layoutX="225.0" layoutY="200.0" prefWidth="150.0" />
     <Label layoutX="151.0" layoutY="124.0" text="first name: " />
     <Label layoutX="152.0" layoutY="164.0" text="last name: " />
     <Label layoutX="168.0" layoutY="204.0" text="age: " />
-    <Label layoutX="268.0" layoutY="70.0" text="Registration" />
+    <Label layoutX="248.0" layoutY="58.0" style="-fx-font-size: 18; -fx-font-weight: bold;" text="Registration" />
     <TextField fx:id="textFieldFirstName" layoutX="225.0" layoutY="120.0" />
     <TextField fx:id="textFieldLastName" layoutX="225.0" layoutY="160.0" />
     <ComboBox fx:id="comboBoxEvent" layoutX="225.0" layoutY="277.0" prefWidth="150.0" />

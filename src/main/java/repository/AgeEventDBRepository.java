@@ -21,10 +21,10 @@ public class AgeEventDBRepository implements AgeEventRepository {
     private static final Logger logger = LogManager.getLogger();
     private AgeEventValidator validator;
 
-    public AgeEventDBRepository(Properties props) {
+    public AgeEventDBRepository(AgeEventValidator validator, Properties props) {
         logger.info("initializing AgeEventDBRepository with properties: {} ", props);
-        dbUtils = new JdbcUtils(props);
-        validator = new AgeEventValidator();
+        this.dbUtils = new JdbcUtils(props);
+        this.validator = validator;
     }
 
     @Override

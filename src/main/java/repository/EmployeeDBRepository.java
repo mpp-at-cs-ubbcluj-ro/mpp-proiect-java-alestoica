@@ -20,10 +20,10 @@ public class EmployeeDBRepository implements EmployeeRepository {
     private static final Logger logger = LogManager.getLogger();
     private EmployeeValidator validator;
 
-    public EmployeeDBRepository(Properties props) {
+    public EmployeeDBRepository(EmployeeValidator validator, Properties props) {
         logger.info("initializing EmployeeDBRepository with properties: {} ", props);
-        dbUtils = new JdbcUtils(props);
-        validator = new EmployeeValidator();
+        this.dbUtils = new JdbcUtils(props);
+        this.validator = validator;
     }
 
     public Employee findOneByUsernameAndPassword(String username, String password) {

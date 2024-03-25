@@ -1,4 +1,5 @@
-import controller.MessageAlert;
+package controller;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -51,9 +52,9 @@ public class LogInController {
     private void handleLogIn() {
         String username = textFieldUsername.getText();
         String password = textFieldPassword.getText();
-//        String hashedPassword = hashPassword(password);
+        String hashedPassword = hashPassword(password);
 
-        Employee employee = employeeService.findOneByUsernameAndPassword(username, password);
+        Employee employee = employeeService.findOneByUsernameAndPassword(username, hashedPassword);
 
         if (employee != null)
             showAccountDialog(employee);
@@ -64,7 +65,7 @@ public class LogInController {
     private void showAccountDialog(Employee employee) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("account-view.fxml"));
+            loader.setLocation(getClass().getResource("../view/account-view.fxml"));
             AnchorPane layout = loader.load();
 
             Stage dialogStage = new Stage();
