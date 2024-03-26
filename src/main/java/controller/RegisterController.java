@@ -56,14 +56,15 @@ public class RegisterController {
             textFieldFirstName.setText(currentParticipant.getFirstName());
             textFieldLastName.setText(currentParticipant.getLastName());
             comboBoxAge.getSelectionModel().select(currentParticipant.getAge() - 6);
-        }
-        else {
-            comboBoxAge.getSelectionModel().selectFirst();
-        }
+            comboBoxAge.setDisable(true);
 
-        comboBoxAge.setOnAction(event -> {
-            int age = comboBoxAge.getSelectionModel().getSelectedItem();
-            System.out.println(age);
+            List<Long> ageEventsIds = new ArrayList<>();
+            registrationService.findByParticipant(currentParticipant.getId()).forEach(registration -> ageEventsIds.add(registration.getIdAgeEvent()));
+
+            List<String> ageEventsNames = new ArrayList<>();
+            ageEventsIds.forEach(id -> ageEventsNames.add(ageEventService.findOne(id).getSportsEvent().toString()));
+
+            int age = currentParticipant.getAge();
 
             List<String> events = new ArrayList<>();
             if (age >= 6 && age <= 8) {
@@ -77,18 +78,33 @@ public class RegisterController {
                 events.add("METERS_1500");
             }
 
+            ageEventsNames.forEach(events::remove);
+
             comboBoxEvent.getItems().setAll(events);
             comboBoxEvent.getSelectionModel().selectFirst();
-        });
+        }
+        else {
+            comboBoxAge.getSelectionModel().selectFirst();
+            comboBoxAge.setOnAction(event -> {
+                int age = comboBoxAge.getSelectionModel().getSelectedItem();
 
-        List<String> events = new ArrayList<>();
-        events.add("METERS_50");
-        events.add("METERS_100");
-        events.add("METERS_1000");
-        events.add("METERS_1500");
+                List<String> events = new ArrayList<>();
+                if (age >= 6 && age <= 8) {
+                    events.add("METERS_50");
+                    events.add("METERS_100");
+                } else if (age >= 9 && age <= 11) {
+                    events.add("METERS_100");
+                    events.add("METERS_1000");
+                } else if (age >= 12 && age <= 15) {
+                    events.add("METERS_1000");
+                    events.add("METERS_1500");
+                }
 
-        comboBoxEvent.getItems().setAll(events);
-        comboBoxEvent.getSelectionModel().selectFirst();
+                comboBoxEvent.getItems().setAll(events);
+                comboBoxEvent.getSelectionModel().selectFirst();
+            });
+            comboBoxAge.getSelectionModel().selectFirst();
+        }
     }
 
     @FXML
@@ -140,7 +156,7 @@ public class RegisterController {
 
             Integer age = comboBoxAge.getSelectionModel().getSelectedItem();
 
-            String sportsEvent = comboBoxEvent.toString();
+            String sportsEvent = comboBoxEvent.getSelectionModel().getSelectedItem();
             String ageGroup = "GROUP_6_8_YEARS";
 
             if (age >= 9 && age <= 11) {
@@ -149,9 +165,17 @@ public class RegisterController {
                 ageGroup = "GROUP_12_15_YEARS";
             }
 
+            System.out.println(ageGroup);
+            System.out.println(sportsEvent);
+
             AgeEvent ageEvent = ageEventService.findByAgeGroupAndSportsEvent(ageGroup, sportsEvent);
 
+            System.out.println(ageEvent);
+
             Registration registration = new Registration(idParticipant, ageEvent.getId(), currentEmployee.getId());
+            Random random = new Random();
+            Long id = random.nextLong(100000);
+            registration.setId(id);
             registrationService.add(registration);
 
             MessageAlert.showMessage(null, Alert.AlertType.INFORMATION, "Register", currentParticipant.getFirstName() + " was successfully registered for " + ageEvent.getSportsEvent().toString() + "!");
