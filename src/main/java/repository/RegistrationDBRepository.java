@@ -1,5 +1,8 @@
 package repository;
 
+import model.AgeEvent;
+import model.Employee;
+import model.Participant;
 import model.Registration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,22 +21,28 @@ public class RegistrationDBRepository implements RegistrationRepository {
     private JdbcUtils dbUtils;
     private static final Logger logger = LogManager.getLogger();
     private RegistrationValidator validator;
+    private ParticipantRepository participantRepository;
+    private AgeEventRepository ageEventRepository;
+    private EmployeeRepository employeeRepository;
 
-    public RegistrationDBRepository(RegistrationValidator validator, Properties props) {
+    public RegistrationDBRepository(RegistrationValidator validator, Properties props, ParticipantRepository participantRepository, AgeEventRepository ageEventRepository, EmployeeRepository employeeRepository) {
         logger.info("initializing RegistrationDBRepository with properties: {} ", props);
         this.dbUtils = new JdbcUtils(props);
         this.validator = validator;
+        this.participantRepository = participantRepository;
+        this.ageEventRepository =  ageEventRepository;
+        this.employeeRepository = employeeRepository;
     }
 
     @Override
-    public Collection<Registration> findByAgeEvent(Long idAgeEvent) {
+    public Collection<Registration> findByAgeEvent(AgeEvent ageEvent) {
         logger.traceEntry();
         Connection con = dbUtils.getConnection();
         List<Registration> registrations = new ArrayList<>();
 
         try (PreparedStatement preparedStatement = con.prepareStatement("select * from registrations where id_age_event = ?")) {
 
-            preparedStatement.setLong(1, idAgeEvent);
+            preparedStatement.setLong(1, ageEvent.getId());
             ResultSet result = preparedStatement.executeQuery();
 
             while (result.next()) {
@@ -41,7 +50,10 @@ public class RegistrationDBRepository implements RegistrationRepository {
                 Long idParticipant = result.getLong("id_participant");
                 Long idEmployee = result.getLong("id_employee");
 
-                Registration registration = new Registration(idParticipant, idAgeEvent, idEmployee);
+                Participant participant = participantRepository.findOne(idParticipant);
+                Employee employee = employeeRepository.findOne(idEmployee);
+
+                Registration registration = new Registration(participant, ageEvent, employee);
                 registration.setId(id);
 
                 registrations.add(registration);
@@ -57,14 +69,14 @@ public class RegistrationDBRepository implements RegistrationRepository {
     }
 
     @Override
-    public Collection<Registration> findByParticipant(Long idParticipant) {
+    public Collection<Registration> findByParticipant(Participant participant) {
         logger.traceEntry();
         Connection con = dbUtils.getConnection();
         List<Registration> registrations = new ArrayList<>();
 
         try (PreparedStatement preparedStatement = con.prepareStatement("select * from registrations where id_participant = ?")) {
 
-            preparedStatement.setLong(1, idParticipant);
+            preparedStatement.setLong(1, participant.getId());
             ResultSet result = preparedStatement.executeQuery();
 
             while (result.next()) {
@@ -72,7 +84,10 @@ public class RegistrationDBRepository implements RegistrationRepository {
                 Long idAgeEvent = result.getLong("id_age_event");
                 Long idEmployee = result.getLong("id_employee");
 
-                Registration registration = new Registration(idParticipant, idAgeEvent, idEmployee);
+                AgeEvent ageEvent = ageEventRepository.findOne(idAgeEvent);
+                Employee employee = employeeRepository.findOne(idEmployee);
+
+                Registration registration = new Registration(participant, ageEvent, employee);
                 registration.setId(id);
 
                 registrations.add(registration);
@@ -102,7 +117,11 @@ public class RegistrationDBRepository implements RegistrationRepository {
                 Long idEmployee = result.getLong("id_employee");
                 Long idAgeEvent = result.getLong("id_age_event");
 
-                Registration registration = new Registration(idParticipant, idAgeEvent, idEmployee);
+                Participant participant = participantRepository.findOne(idParticipant);
+                AgeEvent ageEvent = ageEventRepository.findOne(idAgeEvent);
+                Employee employee = employeeRepository.findOne(idEmployee);
+
+                Registration registration = new Registration(participant, ageEvent, employee);
                 registration.setId(id);
 
                 logger.traceExit();
@@ -132,7 +151,11 @@ public class RegistrationDBRepository implements RegistrationRepository {
                 Long idEmployee = result.getLong("id_employee");
                 Long idAgeEvent = result.getLong("id_age_event");
 
-                Registration registration = new Registration(idParticipant, idAgeEvent, idEmployee);
+                Participant participant = participantRepository.findOne(idParticipant);
+                AgeEvent ageEvent = ageEventRepository.findOne(idAgeEvent);
+                Employee employee = employeeRepository.findOne(idEmployee);
+
+                Registration registration = new Registration(participant, ageEvent, employee);
                 registration.setId(id);
 
                 registrations.add(registration);
@@ -155,9 +178,9 @@ public class RegistrationDBRepository implements RegistrationRepository {
         try (PreparedStatement preparedStatement = con.prepareStatement("insert into registrations (id, id_participant, id_age_event, id_employee) values (?, ?, ?, ?)")) {
 
             preparedStatement.setLong(1, entity.getId());
-            preparedStatement.setLong(2, entity.getIdParticipant());
-            preparedStatement.setLong(3, entity.getIdAgeEvent());
-            preparedStatement.setLong(4, entity.getIdEmployee());
+            preparedStatement.setLong(2, entity.getParticipant().getId());
+            preparedStatement.setLong(3, entity.getAgeEvent().getId());
+            preparedStatement.setLong(4, entity.getEmployee().getId());
 
             validator.validate(entity);
 
@@ -201,9 +224,9 @@ public class RegistrationDBRepository implements RegistrationRepository {
 
         try (PreparedStatement preparedStatement = con.prepareStatement("update registrations set id_participant = ?, id_age_event = ?, id_employee = ? where id = ?")) {
 
-            preparedStatement.setLong(1, entity.getIdParticipant());
-            preparedStatement.setLong(2, entity.getIdAgeEvent());
-            preparedStatement.setLong(3, entity.getIdEmployee());
+            preparedStatement.setLong(1, entity.getParticipant().getId());
+            preparedStatement.setLong(2, entity.getAgeEvent().getId());
+            preparedStatement.setLong(3, entity.getEmployee().getId());
             preparedStatement.setLong(4, id);
 
             validator.validate(entity);
@@ -234,7 +257,11 @@ public class RegistrationDBRepository implements RegistrationRepository {
                 Long idEmployee = result.getLong("id_employee");
                 Long idAgeEvent = result.getLong("id_age_event");
 
-                Registration registration = new Registration(idParticipant, idAgeEvent, idEmployee);
+                Participant participant = participantRepository.findOne(idParticipant);
+                AgeEvent ageEvent = ageEventRepository.findOne(idAgeEvent);
+                Employee employee = employeeRepository.findOne(idEmployee);
+
+                Registration registration = new Registration(participant, ageEvent, employee);
                 registration.setId(id);
 
                 registrations.add(registration);

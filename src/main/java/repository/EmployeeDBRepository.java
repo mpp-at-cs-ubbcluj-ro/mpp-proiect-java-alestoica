@@ -119,6 +119,41 @@ public class EmployeeDBRepository implements EmployeeRepository {
     }
 
     @Override
+    public Collection<Employee> getAll() {
+        logger.traceEntry();
+        Connection con = dbUtils.getConnection();
+        List<Employee> employees = new ArrayList<>();
+
+        try(PreparedStatement preparedStatement = con.prepareStatement("select * from employees");
+            ResultSet result = preparedStatement.executeQuery();){
+
+            while (result.next()) {
+                Long id = result.getLong("id");
+                String firstName = result.getString("first_name");
+                String lastName = result.getString("last_name");
+                String username = result.getString("username");
+                String password = result.getString("password");
+
+                Employee employee = new Employee(firstName, lastName, username, password);
+                employee.setId(id);
+
+                employees.add(employee);
+            }
+
+        } catch (SQLException e) {
+            logger.error(e);
+            System.err.println("db error " + e);
+        }
+
+        logger.traceExit();
+        return employees;
+    }
+
+
+
+
+
+    @Override
     public void add(Employee entity) {
         logger.traceEntry("saving employee {}", entity);
         Connection con = dbUtils.getConnection();
@@ -190,36 +225,5 @@ public class EmployeeDBRepository implements EmployeeRepository {
         }
 
         logger.traceExit();
-    }
-
-    @Override
-    public Collection<Employee> getAll() {
-        logger.traceEntry();
-        Connection con = dbUtils.getConnection();
-        List<Employee> employees = new ArrayList<>();
-
-        try(PreparedStatement preparedStatement = con.prepareStatement("select * from employees");
-            ResultSet result = preparedStatement.executeQuery();){
-
-            while (result.next()) {
-                Long id = result.getLong("id");
-                String firstName = result.getString("first_name");
-                String lastName = result.getString("last_name");
-                String username = result.getString("username");
-                String password = result.getString("password");
-
-                Employee employee = new Employee(firstName, lastName, username, password);
-                employee.setId(id);
-
-                employees.add(employee);
-            }
-
-        } catch (SQLException e) {
-            logger.error(e);
-            System.err.println("db error " + e);
-        }
-
-        logger.traceExit();
-        return employees;
     }
 }

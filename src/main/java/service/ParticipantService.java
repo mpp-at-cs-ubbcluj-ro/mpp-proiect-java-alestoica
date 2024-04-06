@@ -5,7 +5,7 @@ import repository.ParticipantRepository;
 
 import java.util.Collection;
 
-public class ParticipantService implements Service<Long, Participant> {
+public class ParticipantService implements ServiceInterface<Long, Participant> {
     ParticipantRepository repo;
 
     public ParticipantService(ParticipantRepository repo) {

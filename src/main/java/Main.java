@@ -1,7 +1,4 @@
-import config.AgeEventConfig;
-import config.EmployeeConfig;
-import config.ParticipantConfig;
-import config.RegistrationConfig;
+import config.Config;
 import controller.LogInController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,10 +8,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import service.AgeEventService;
-import service.EmployeeService;
-import service.ParticipantService;
-import service.RegistrationService;
+import service.Service;
 
 import java.io.IOException;
 
@@ -33,7 +27,7 @@ public class Main extends Application {
 
             LogInController logInController = loader.getController();
 
-            logInController.setServices(getParticipantService(), getEmployeeService(), getAgeEventService(), getRegistrationService());
+            logInController.setService(getService());
 
             dialogStage.show();
 
@@ -42,24 +36,9 @@ public class Main extends Application {
         }
     }
 
-    static ParticipantService getParticipantService() {
-        ApplicationContext context = new AnnotationConfigApplicationContext(ParticipantConfig.class);
-        return context.getBean(ParticipantService.class);
-    }
-
-    static EmployeeService getEmployeeService() {
-        ApplicationContext context = new AnnotationConfigApplicationContext(EmployeeConfig.class);
-        return context.getBean(EmployeeService.class);
-    }
-
-    static AgeEventService getAgeEventService() {
-        ApplicationContext context = new AnnotationConfigApplicationContext(AgeEventConfig.class);
-        return context.getBean(AgeEventService.class);
-    }
-
-    static RegistrationService getRegistrationService() {
-        ApplicationContext context = new AnnotationConfigApplicationContext(RegistrationConfig.class);
-        return context.getBean(RegistrationService.class);
+    static Service getService() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
+        return context.getBean(Service.class);
     }
 
     public static void main(String[] args) {

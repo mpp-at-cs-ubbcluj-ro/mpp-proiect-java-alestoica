@@ -8,10 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Employee;
-import service.AgeEventService;
-import service.EmployeeService;
-import service.ParticipantService;
-import service.RegistrationService;
+import service.*;
 
 import java.io.IOException;
 import java.security.MessageDigest;
@@ -19,20 +16,14 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 public class LogInController {
-    ParticipantService participantService;
-    EmployeeService employeeService;
-    AgeEventService ageEventService;
-    RegistrationService registrationService;
+    Service service;
     @FXML
     private TextField textFieldUsername;
     @FXML
     private TextField textFieldPassword;
 
-    public void setServices(ParticipantService participantService, EmployeeService employeeService, AgeEventService ageEventService, RegistrationService registrationService) {
-        this.participantService = participantService;
-        this.employeeService = employeeService;
-        this.ageEventService = ageEventService;
-        this.registrationService = registrationService;
+    public void setService(Service service) {
+        this.service = service;
     }
 
     public static String hashPassword(String password) {
@@ -54,7 +45,7 @@ public class LogInController {
         String password = textFieldPassword.getText();
         String hashedPassword = hashPassword(password);
 
-        Employee employee = employeeService.findOneByUsernameAndPassword(username, hashedPassword);
+        Employee employee = service.findOneByUsernameAndPassword(username, hashedPassword);
 
         if (employee != null)
             showAccountDialog(employee);
@@ -75,7 +66,7 @@ public class LogInController {
 
             AccountController accountController = loader.getController();
 
-            accountController.setServices(participantService, ageEventService, registrationService, employee);
+            accountController.setService(service, employee);
 
             dialogStage.show();
 

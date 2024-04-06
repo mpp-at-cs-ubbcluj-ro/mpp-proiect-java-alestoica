@@ -5,7 +5,7 @@ import repository.EmployeeRepository;
 
 import java.util.Collection;
 
-public class EmployeeService implements Service<Long, Employee> {
+public class EmployeeService implements ServiceInterface<Long, Employee> {
     EmployeeRepository repo;
 
     public EmployeeService(EmployeeRepository repo) {
@@ -27,6 +27,15 @@ public class EmployeeService implements Service<Long, Employee> {
     }
 
     @Override
+    public Collection<Employee> getAll() {
+        return repo.getAll();
+    }
+
+
+
+
+
+    @Override
     public void add(Employee entity) {
         repo.add(entity);
     }
@@ -39,10 +48,5 @@ public class EmployeeService implements Service<Long, Employee> {
     @Override
     public void update(Long id, Employee entity) {
         repo.update(id, entity);
-    }
-
-    @Override
-    public Collection<Employee> getAll() {
-        return repo.getAll();
     }
 }

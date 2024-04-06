@@ -5,7 +5,7 @@ import repository.AgeEventRepository;
 
 import java.util.Collection;
 
-public class AgeEventService implements Service<Long, AgeEvent> {
+public class AgeEventService implements ServiceInterface<Long, AgeEvent> {
     AgeEventRepository repo;
 
     public AgeEventService(AgeEventRepository repo) {

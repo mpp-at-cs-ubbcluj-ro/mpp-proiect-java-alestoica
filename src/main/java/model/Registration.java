@@ -1,45 +1,47 @@
 package model;
 
 public class Registration extends Entity<Long> {
-    private Long idParticipant, idAgeEvent, idEmployee;
+    private Participant participant;
+    private AgeEvent ageEvent;
+    private Employee employee;
 
-    public Registration(Long idParticipant, Long idAgeEvent, Long idEmployee) {
-        this.idParticipant = idParticipant;
-        this.idAgeEvent = idAgeEvent;
-        this.idEmployee = idEmployee;
+    public Registration(Participant participant, AgeEvent ageEvent, Employee employee) {
+        this.participant = participant;
+        this.ageEvent = ageEvent;
+        this.employee = employee;
     }
 
-    public Long getIdParticipant() {
-        return idParticipant;
+    public Participant getParticipant() {
+        return participant;
     }
 
-    public void setIdParticipant(Long idParticipant) {
-        this.idParticipant = idParticipant;
+    public void setParticipant(Participant participant) {
+        this.participant = participant;
     }
 
-    public Long getIdAgeEvent() {
-        return idAgeEvent;
+    public AgeEvent getAgeEvent() {
+        return ageEvent;
     }
 
-    public void setIdAgeEvent(Long idAgeEvent) {
-        this.idAgeEvent = idAgeEvent;
+    public void setAgeEvent(AgeEvent ageEvent) {
+        this.ageEvent = ageEvent;
     }
 
-    public Long getIdEmployee() {
-        return idEmployee;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setIdEmployee(Long idEmployee) {
-        this.idEmployee = idEmployee;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     @Override
     public String toString() {
         return "Registration { " +
                 "id=" + id +
-                ", idParticipant=" + idParticipant +
-                ", idAgeEvent=" + idAgeEvent +
-                ", idEmployee=" + idEmployee +
+                ", idParticipant=" + participant +
+                ", idAgeEvent=" + ageEvent +
+                ", idEmployee=" + employee +
                 " }";
     }
 }

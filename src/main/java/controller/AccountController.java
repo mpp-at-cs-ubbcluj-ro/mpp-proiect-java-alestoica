@@ -17,9 +17,7 @@ import model.AgeEvent;
 import model.Employee;
 import model.Participant;
 import model.Registration;
-import service.AgeEventService;
-import service.ParticipantService;
-import service.RegistrationService;
+import service.*;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -27,9 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AccountController {
-    ParticipantService participantService;
-    AgeEventService ageEventService;
-    RegistrationService registrationService;
+    Service service;
     @FXML
     Label welcomeLabel;
     ObservableList<AgeEvent> modelAgeEvent = FXCollections.observableArrayList();
@@ -52,10 +48,8 @@ public class AccountController {
     TableColumn<Participant, Integer> tableColumnNoRegistrations;
     Employee currentEmployee;
 
-    public void setServices(ParticipantService participantService, AgeEventService ageEventService, RegistrationService registrationService, Employee employee) {
-        this.participantService = participantService;
-        this.ageEventService = ageEventService;
-        this.registrationService = registrationService;
+    public void setService(Service service, Employee employee) {
+        this.service = service;
 
         this.currentEmployee = employee;
         this.welcomeLabel.setText("Welcome, " + currentEmployee.getFirstName() + "!");
@@ -64,10 +58,10 @@ public class AccountController {
     }
 
     private void initModel() {
-        Collection<AgeEvent> ageEvents = ageEventService.getAll();
+        Collection<AgeEvent> ageEvents = service.getAllAgeEvents();
         modelAgeEvent.setAll(ageEvents);
 
-        Collection<Participant> participants = participantService.getAll();
+        Collection<Participant> participants = service.getAllParticipants();
         modelParticipants.setAll(participants);
     }
 
@@ -77,7 +71,7 @@ public class AccountController {
         tableColumnSportsEvent.setCellValueFactory(new PropertyValueFactory<>("sportsEvent"));
         tableColumnNoParticipants.setCellValueFactory(cellData -> {
             AgeEvent ageEvent = cellData.getValue();
-            int noParticipants = countParticipants(ageEvent.getId());
+            int noParticipants = countParticipants(ageEvent);
             return new SimpleIntegerProperty(noParticipants).asObject();
         });
 
@@ -87,7 +81,7 @@ public class AccountController {
         tableColumnAge.setCellValueFactory(new PropertyValueFactory<>("age"));
         tableColumnNoRegistrations.setCellValueFactory(cellData -> {
             Participant participant = cellData.getValue();
-            int noRegistrations = countRegistrations(participant.getId());
+            int noRegistrations = countRegistrations(participant);
             return new SimpleIntegerProperty(noRegistrations).asObject();
         });
 
@@ -110,7 +104,7 @@ public class AccountController {
 
             SearchController searchController = loader.getController();
 
-            searchController.setServices(participantService, registrationService, ageEvent);
+            searchController.setService(service, ageEvent);
 
             dialogStage.show();
 
@@ -135,7 +129,7 @@ public class AccountController {
 
             RegisterController registerController = loader.getController();
 
-            registerController.setServices(participantService, registrationService, ageEventService, currentParticipant, currentEmployee, dialogStage);
+            registerController.setService(service, currentParticipant, currentEmployee, dialogStage);
 
             dialogStage.show();
 
@@ -144,20 +138,20 @@ public class AccountController {
         }
     }
 
-    private int countParticipants(Long ageEvent) {
-        Iterable<Registration> registrations = registrationService.findByAgeEvent(ageEvent);
+    private int countParticipants(AgeEvent ageEvent) {
+        Iterable<Registration> registrations = service.findByAgeEvent(ageEvent);
         Map<Long, Integer> participantsCountMap = new HashMap<>();
 
         for (Registration registration : registrations) {
-            Long eventId = registration.getIdAgeEvent();
+            Long eventId = registration.getAgeEvent().getId();
             participantsCountMap.put(eventId, participantsCountMap.getOrDefault(eventId, 0) + 1);
         }
 
-        return participantsCountMap.getOrDefault(ageEvent, 0);
+        return participantsCountMap.getOrDefault(ageEvent.getId(), 0);
     }
 
-    private int countRegistrations(Long participant) {
-        Collection<Registration> registrations = registrationService.findByParticipant(participant);
+    private int countRegistrations(Participant participant) {
+        Collection<Registration> registrations = service.findByParticipant(participant);
         return registrations.size();
     }
 }

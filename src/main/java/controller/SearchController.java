@@ -11,15 +11,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.AgeEvent;
 import model.Participant;
 import model.Registration;
-import service.ParticipantService;
-import service.RegistrationService;
+import service.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 public class SearchController {
-    ParticipantService participantService;
-    RegistrationService registrationService;
+    Service service;
     @FXML
     Label titleLabel1;
     @FXML
@@ -39,9 +37,8 @@ public class SearchController {
     TableColumn<Participant, Integer> tableColumnNoRegistrations;
     AgeEvent currentAgeEvent;
 
-    public void setServices(ParticipantService participantService, RegistrationService registrationService, AgeEvent ageEvent) {
-        this.participantService = participantService;
-        this.registrationService = registrationService;
+    public void setService(Service service, AgeEvent ageEvent) {
+        this.service = service;
 
         this.currentAgeEvent = ageEvent;
 
@@ -59,11 +56,11 @@ public class SearchController {
     }
 
     private void initModel() {
-        Collection<Registration> registrations = registrationService.findByAgeEvent(currentAgeEvent.getId());
+        Collection<Registration> registrations = service.findByAgeEvent(currentAgeEvent);
         Collection<Participant> participants = new ArrayList<>();
 
         registrations.forEach(registration -> {
-            Participant participant = participantService.findOne(registration.getIdParticipant());
+            Participant participant = service.findOne(registration.getParticipant().getId());
             participants.add(participant);
         });
 
@@ -76,15 +73,15 @@ public class SearchController {
         tableColumnAge.setCellValueFactory(new PropertyValueFactory<>("age"));
         tableColumnNoRegistrations.setCellValueFactory(cellData -> {
             Participant participant = cellData.getValue();
-            int noRegistrations = countRegistrations(participant.getId());
+            int noRegistrations = countRegistrations(participant);
             return new SimpleIntegerProperty(noRegistrations).asObject();
         });
 
         tableView.setItems(model);
     }
 
-    private int countRegistrations(Long participant) {
-        Collection<Registration> registrations = registrationService.findByParticipant(participant);
+    private int countRegistrations(Participant participant) {
+        Collection<Registration> registrations = service.findByParticipant(participant);
         return registrations.size();
     }
 }

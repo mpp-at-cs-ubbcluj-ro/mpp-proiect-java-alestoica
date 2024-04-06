@@ -10,13 +10,13 @@ public class RegistrationValidator implements Validator<Registration> {
         if (entity.getId() < 0)
             msg.append("The id cannot be negative!");
 
-        if (entity.getIdParticipant() < 0)
+        if (entity.getParticipant().getId() < 0)
             msg.append("The id of the participant cannot be negative!");
 
-        if (entity.getIdEmployee() < 0)
+        if (entity.getEmployee().getId() < 0)
             msg.append("The id of the employee cannot be negative!");
 
-        if (entity.getIdAgeEvent() < 0)
+        if (entity.getAgeEvent().getId() < 0)
             msg.append("The id of the event cannot be negative!");
 
         if (!msg.isEmpty())

@@ -1,23 +1,25 @@
 package service;
 
+import model.AgeEvent;
+import model.Participant;
 import model.Registration;
 import repository.RegistrationRepository;
 
 import java.util.Collection;
 
-public class RegistrationService implements Service<Long, Registration> {
+public class RegistrationService implements ServiceInterface<Long, Registration> {
     RegistrationRepository repo;
 
     public RegistrationService(RegistrationRepository repo) {
         this.repo = repo;
     }
 
-    public Collection<Registration> findByAgeEvent(Long idAgeEvent) {
-        return repo.findByAgeEvent(idAgeEvent);
+    public Collection<Registration> findByAgeEvent(AgeEvent ageEvent) {
+        return repo.findByAgeEvent(ageEvent);
     }
 
-    public Collection<Registration> findByParticipant(Long idParticipant) {
-        return repo.findByParticipant(idParticipant);
+    public Collection<Registration> findByParticipant(Participant participant) {
+        return repo.findByParticipant(participant);
     }
 
     @Override
