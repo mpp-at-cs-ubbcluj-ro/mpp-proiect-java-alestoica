@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccountController">
+
+
+    <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="227.0" layoutY="54.0" style="-fx-font-size: 18; -fx-font-weight: bold;" />
+    <TableView fx:id="tableViewEvents" layoutX="14.0" layoutY="114.0" prefHeight="200.0" prefWidth="277.0">
+        <columns>
+            <TableColumn fx:id="tableColumnAgeGroup" text="age group" />
+            <TableColumn fx:id="tableColumnSportsEvent" prefWidth="97.99996948242188" text="sports event" />
+            <TableColumn fx:id="tableColumnNoParticipants" prefWidth="99.33331298828125" text="no. participants" />
+
+        </columns>
+    </TableView>
+    <TableView fx:id="tableViewParticipants" layoutX="308.0" layoutY="114.0" prefHeight="200.0" prefWidth="277.0">
+        <columns>
+            <TableColumn fx:id="tableColumnFullName" prefWidth="107.3333740234375" text="full name" />
+            <TableColumn fx:id="tableColumnAge" prefWidth="45.3333740234375" text="age" />
+            <TableColumn fx:id="tableColumnNoRegistrations" prefWidth="122.6666259765625" text="no. registrations" />
+        </columns>
+    </TableView>
+    <Button layoutX="127.0" layoutY="337.0" mnemonicParsing="false" onAction="#handleSearch" text="Search" />
+    <Button layoutX="417.0" layoutY="337.0" mnemonicParsing="false" onAction="#handleRegister" text="Register" />
+   <Button layoutX="270.0" layoutY="337.0" mnemonicParsing="false" onAction="#handleLogOut" text="Log Out" />
+</AnchorPane>

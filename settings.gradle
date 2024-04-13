@@ -1,2 +1,8 @@
-rootProject.name = 'java-project'
+rootProject.name = 'java-project-new'
+include 'Client'
+include 'Model'
+include 'Networking'
+include 'Persistence'
+include 'Server'
+include 'Services'
 

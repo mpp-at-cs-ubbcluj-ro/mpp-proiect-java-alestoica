@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SearchController">
+
+    <Label fx:id="titleLabel1" alignment="CENTER" layoutX="189.0" layoutY="32.0" style="-fx-font-size: 18; -fx-font-weight: bold;" text="Participants registered for" />
+    <Label fx:id="titleLabel2" alignment="CENTER" layoutX="225.0" layoutY="59.0" style="-fx-font-size: 18; -fx-font-weight: bold;" text="age group 12 - 15" />
+    <Label fx:id="titleLabel3" alignment="CENTER" layoutX="269.0" layoutY="86.0" style="-fx-font-size: 18; -fx-font-weight: bold;" text="and for" />
+    <Label fx:id="titleLabel4" alignment="CENTER" layoutX="245.0" layoutY="113.0" style="-fx-font-size: 18; -fx-font-weight: bold;" text="1000 meters:" />
+    <TableView fx:id="tableView" layoutX="141.0" layoutY="153.0" prefHeight="200.0" prefWidth="317.0">
+        <columns>
+            <TableColumn fx:id="tableColumnFullName" prefWidth="121.33334350585938" text="full name" />
+            <TableColumn fx:id="tableColumnAge" prefWidth="63.3333740234375" text="age" />
+            <TableColumn fx:id="tableColumnNoRegistrations" prefWidth="132.0" text="no. registrations" />
+        </columns>
+    </TableView>
+
+</AnchorPane>
