@@ -86,14 +86,11 @@ public class Proxy implements IService {
         initializeConnection();
 
         Request request = new Request.Builder().type(RequestType.LOGIN).data(employee).build();
-//        System.out.println("Request " + request);
         sendRequest(request);
 
         Response response = readResponse();
-//        System.out.println("Response " + response);
 
         if (response.type() == ResponseType.OK) {
-//            System.out.println("Client: " + client);
             this.client = client;
             return (Employee) response.data();
         } else if (response.type() == ResponseType.ERROR) {
@@ -232,8 +229,6 @@ public class Proxy implements IService {
             System.out.println(error);
         }
 
-//        System.out.println("aiciiii " + response.data());
-
         return (AgeEvent) response.data();
     }
 
@@ -323,7 +318,6 @@ public class Proxy implements IService {
                     System.out.println("Proxy response: " + response);
 
                     if (isUpdate((Response) response)) {
-//                        responses.put((Response) response);
                         handleUpdate((Response) response);
                     } else {
                         try {

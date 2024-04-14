@@ -62,13 +62,10 @@ public class LogInController {
 
             accountController = loader.getController();
 
-//            System.out.println(employee);
             System.out.println("Client: (account controller) " + accountController);
             Employee connectedEmployee = service.login(employee, accountController);
 
             accountController.setService(service, connectedEmployee, dialogStage);
-//            System.out.println(connectedEmployee);
-//            showAccountDialog(connectedEmployee);
 
             dialogStage.show();
 

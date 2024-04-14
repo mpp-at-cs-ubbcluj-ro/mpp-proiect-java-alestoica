@@ -43,8 +43,6 @@ public class ClientWorker implements Runnable, IObserver {
 
                 Response response = handleRequest((Request) request);
 
-//                System.out.println("run response " + response);
-
                 if (response != null) {
                     System.out.println("run response" + response);
                     sendResponse(response);
@@ -76,7 +74,6 @@ public class ClientWorker implements Runnable, IObserver {
             Employee employee = (Employee) request.data();
 
             try {
-//                System.out.println("ClientWorker log in");
                 Employee foundEmployee = service.login(employee, this);
                 return new Response.Builder().type(OK).data(foundEmployee).build();
             } catch (Exception e) {
