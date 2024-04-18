@@ -1,0 +1,89 @@
+syntax = "proto3";
+package protocol;
+
+option java_package = "protobufprotocol";
+option java_outer_classname = "Protobufs";
+
+message Participant {
+  int64 id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  int32 age = 4;
+}
+
+message Employee {
+  int64 id = 1;
+  string username = 2;
+  string password = 3;
+  string firstName = 4;
+  string lastName = 5;
+}
+
+message AgeEvent {
+  enum AgeGroup {UNKNOWN_AGE_GROUP = 0; GROUP_6_8_YEARS = 1; GROUP_9_11_YEARS = 2; GROUP_12_15_YEARS = 3;};
+  enum SportsEvent {UNKNOWN_SPORTS_EVENT = 0; METERS_50 = 1; METERS_100 = 2; METERS_1000 = 3; METERS_1500 = 4;}
+
+  int64 id = 1;
+  AgeGroup ageGroup = 2;
+  SportsEvent sportsEvent = 3;
+}
+
+message Registration {
+  int64 id = 1;
+  Participant participant = 2;
+  AgeEvent ageEvent = 3;
+  Employee employee = 4;
+}
+
+message Request {
+  enum RequestType {
+    UNKNOWN_REQUEST = 0;
+    LOGIN = 1;
+    LOGOUT = 2;
+    ADD_REGISTRATION = 3;
+    ADD_PARTICIPANT = 4;
+    GET_EVENTS = 5;
+    GET_PARTICIPANTS = 6;
+    GET_PARTICIPANT = 7;
+    GET_EMPLOYEE = 8;
+    GET_AGE_EVENT = 9;
+    REGISTRATION_BY_AGE_EVENT = 10;
+    REGISTRATION_BY_PARTICIPANT = 11;
+    PARTICIPANT_BY_NAME_AND_AGE = 12;
+    COUNT_PARTICIPANTS = 13;
+    COUNT_REGISTRATIONS = 14;
+  };
+
+  RequestType type = 1;
+
+  oneof payload {
+    Employee employee = 2;
+    int64 id = 3;
+    AgeEvent ageEvent = 4;
+    Participant participant = 5;
+    Registration registration = 6;
+  }
+}
+
+message Response {
+  enum ResponseType {
+    UNKNOWN_RESPONSE = 0;
+    OK = 1;
+    ERROR = 2;
+    GET_EVENTS = 3;
+    GET_PARTICIPANTS = 4;
+    NEW_REGISTRATION = 5;
+  }
+
+  ResponseType type = 1;
+
+  Employee employee = 2;
+  repeated Registration registrations = 3;
+  repeated Participant participants = 4;
+  repeated AgeEvent ageEvents = 5;
+  Registration registration = 6;
+  Participant participant = 7;
+  AgeEvent ageEvent = 8;
+  int32 count = 9;
+  string error = 10;
+}

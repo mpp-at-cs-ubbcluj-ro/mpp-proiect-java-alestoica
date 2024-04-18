@@ -9,6 +9,7 @@ import server.Service;
 import service.*;
 import utils.AbstractServer;
 import utils.ConcurrentServer;
+import utils.ProtoConcurrentServer;
 import utils.ServerException;
 import validators.AgeEventValidator;
 import validators.EmployeeValidator;
@@ -60,7 +61,8 @@ public class StartServer {
         }
 
         System.out.println("Starting server on port: " + serverPort);
-        AbstractServer server = new ConcurrentServer(serverPort, service);
+//        AbstractServer server = new ConcurrentServer(serverPort, service);
+        AbstractServer server = new ProtoConcurrentServer(serverPort, service);
 
         try {
             server.start();

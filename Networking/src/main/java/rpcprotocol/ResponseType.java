@@ -5,9 +5,9 @@ public enum ResponseType {
     ERROR,
     GET_EVENTS,
     GET_PARTICIPANTS,
-    UPDATE,
+//    UPDATE,
     NEW_REGISTRATION,
-    NEW_PARTICIPANT,
-    LOGGED_IN,
-    LOGGED_OUT
+//    NEW_PARTICIPANT,
+//    LOGGED_IN,
+//    LOGGED_OUT
 }

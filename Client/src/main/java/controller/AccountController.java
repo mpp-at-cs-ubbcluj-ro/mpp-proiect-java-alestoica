@@ -117,6 +117,8 @@ public class AccountController implements IObserver {
             if (ageEventDTO != null)
                 ageEvent = DTOUtils.getFromDTO(ageEventDTO);
 
+            System.out.println("Account Controller handleSearch" + ageEvent);
+
             if (ageEvent == null)
                 MessageAlert.showErrorMessage(null, "No event was selected!");
             else {
@@ -186,16 +188,16 @@ public class AccountController implements IObserver {
         });
     }
 
-    @Override
-    public void notifyAddParticipant(Participant participant) throws Exception {
-        Platform.runLater(()->{
-            try {
-                System.out.println("account controller notify part");
-                initModelParticipants();
-                initModelAgeEvents();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        });
-    }
+//    @Override
+//    public void notifyAddParticipant(Participant participant) throws Exception {
+//        Platform.runLater(()->{
+//            try {
+//                System.out.println("account controller notify part");
+//                initModelParticipants();
+//                initModelAgeEvents();
+//            } catch (Exception e) {
+//                throw new RuntimeException(e);
+//            }
+//        });
+//    }
 }

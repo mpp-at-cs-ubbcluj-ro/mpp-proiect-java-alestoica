@@ -108,7 +108,7 @@ public class RegisterController {
 
                 Participant participant = service.findOneByNameAndAge(firstName, lastName, age);
 
-                if (participant == null) {
+                if (participant.getId() == 0) {
                     participant = new Participant(firstName, lastName, age);
                     participant.setId(id);
 

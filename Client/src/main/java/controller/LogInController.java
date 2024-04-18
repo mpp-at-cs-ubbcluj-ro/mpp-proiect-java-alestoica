@@ -49,6 +49,7 @@ public class LogInController {
         String hashedPassword = hashPassword(password);
 
         Employee employee = new Employee("", "", username, hashedPassword);
+        employee.setId(1L);
 
         try {
             FXMLLoader loader = new FXMLLoader();

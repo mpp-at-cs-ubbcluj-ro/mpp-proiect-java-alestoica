@@ -285,7 +285,8 @@ public class Proxy implements IService {
     }
 
     private boolean isUpdate(Response response){
-        return response.type() == ResponseType.NEW_REGISTRATION || response.type() == ResponseType.NEW_PARTICIPANT;
+        return response.type() == ResponseType.NEW_REGISTRATION;
+//        || response.type() == ResponseType.NEW_PARTICIPANT;
     }
 
     private void handleUpdate(Response response) throws Exception {
@@ -298,16 +299,17 @@ public class Proxy implements IService {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else if (response.type() == ResponseType.NEW_PARTICIPANT){
-            Participant participant = (Participant) response.data();
-
-            try {
-                System.out.println("notify add participant");
-                client.notifyAddParticipant(participant);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
+//        else if (response.type() == ResponseType.NEW_PARTICIPANT){
+//            Participant participant = (Participant) response.data();
+//
+//            try {
+//                System.out.println("notify add participant");
+//                client.notifyAddParticipant(participant);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 
     private class ReaderThread implements Runnable {

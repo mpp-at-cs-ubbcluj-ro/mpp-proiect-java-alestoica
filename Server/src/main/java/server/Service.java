@@ -68,21 +68,21 @@ public class Service implements IService {
         executorService.shutdown();
     }
 
-    public synchronized void notifyAddParticipant(Participant participant) {
-        ExecutorService executorService = Executors.newFixedThreadPool(defaultThreadsNo);
-
-        loggedClients.forEach((id, client) -> {
-            executorService.execute(() -> {
-                try {
-                    client.notifyAddParticipant(participant);
-                } catch (Exception e) {
-                    System.err.println("Error notifying employee with id " + id + " - message: " + e.getMessage());
-                }
-            });
-        });
-
-        executorService.shutdown();
-    }
+//    public synchronized void notifyAddParticipant(Participant participant) {
+//        ExecutorService executorService = Executors.newFixedThreadPool(defaultThreadsNo);
+//
+//        loggedClients.forEach((id, client) -> {
+//            executorService.execute(() -> {
+//                try {
+//                    client.notifyAddParticipant(participant);
+//                } catch (Exception e) {
+//                    System.err.println("Error notifying employee with id " + id + " - message: " + e.getMessage());
+//                }
+//            });
+//        });
+//
+//        executorService.shutdown();
+//    }
 
     public Employee findOneByUsernameAndPassword(String username, String password) {
         return employeeService.findOneByUsernameAndPassword(username, password);
@@ -123,7 +123,7 @@ public class Service implements IService {
 
     public void addParticipant(Participant entity) {
         participantService.add(entity);
-        notifyAddParticipant(entity);
+//        notifyAddParticipant(entity);
     }
 
     public int countParticipants(AgeEvent ageEvent) {

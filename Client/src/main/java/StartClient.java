@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import protobufprotocol.ProtoProxy;
 import rpcprotocol.ClientWorker;
 import rpcprotocol.Proxy;
 import service.IService;
@@ -51,7 +52,8 @@ public class StartClient extends Application {
 
             LogInController logInController = loader.getController();
 
-            IService service = new Proxy(serverIP, serverPort);
+//            IService service = new Proxy(serverIP, serverPort);
+            IService service = new ProtoProxy(serverIP, serverPort);
 
             logInController.setService(service, dialogStage);
 

@@ -218,15 +218,15 @@ public class ClientWorker implements Runnable, IObserver {
         }
     }
 
-    @Override
-    public void notifyAddParticipant(Participant participant) throws Exception {
-        Response response = new Response.Builder().type(ResponseType.NEW_PARTICIPANT).data(participant).build();
-        System.out.println("notify participant in client worker");
-
-        try {
-            sendResponse(response);
-        } catch (IOException e) {
-            throw new Exception("Adding participant error: " + e.getMessage());
-        }
-    }
+//    @Override
+//    public void notifyAddParticipant(Participant participant) throws Exception {
+//        Response response = new Response.Builder().type(ResponseType.NEW_PARTICIPANT).data(participant).build();
+//        System.out.println("notify participant in client worker");
+//
+//        try {
+//            sendResponse(response);
+//        } catch (IOException e) {
+//            throw new Exception("Adding participant error: " + e.getMessage());
+//        }
+//    }
 }

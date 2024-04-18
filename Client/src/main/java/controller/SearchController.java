@@ -1,5 +1,7 @@
 package controller;
 
+import dto.DTOUtils;
+import dto.ParticipantDTO;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +15,8 @@ import model.Participant;
 import model.Registration;
 import service.IService;
 
+import javax.sound.midi.Soundbank;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -26,9 +30,9 @@ public class SearchController {
     Label titleLabel3;
     @FXML
     Label titleLabel4;
-    ObservableList<Participant> model = FXCollections.observableArrayList();
+    ObservableList<ParticipantDTO> model = FXCollections.observableArrayList();
     @FXML
-    TableView<Participant> tableView;
+    TableView<ParticipantDTO> tableView;
     @FXML
     TableColumn<Participant, String> tableColumnFullName;
     @FXML
@@ -56,28 +60,47 @@ public class SearchController {
     }
 
     private void initModel() {
+        model.clear();
         Collection<Registration> registrations = service.findByAgeEvent(currentAgeEvent);
-        Collection<Participant> participants = new ArrayList<>();
+        Collection<ParticipantDTO> participantsDTO = new ArrayList<>();
 
         registrations.forEach(registration -> {
             Participant participant = service.findOne(registration.getParticipant().getId());
-            participants.add(participant);
+            ParticipantDTO participantDTO = DTOUtils.getDTO(participant);
+            participantDTO.setNoRegistrations(service.countRegistrations(participant));
+            participantsDTO.add(participantDTO);
         });
 
-        model.setAll(participants);
+        model.setAll(participantsDTO);
+        tableView.setItems(model);
+
+//        Collection<Registration> registrations = service.findByAgeEvent(currentAgeEvent);
+//        Collection<Participant> participants = new ArrayList<>();
+//
+//        registrations.forEach(registration -> {
+//            Participant participant = service.findOne(registration.getParticipant().getId());
+//            System.out.println("initModel Search" + participant);
+//            participants.add(participant);
+//        });
+//
+//        model.setAll(participants);
     }
 
     @FXML
     private void initialize() {
-        tableColumnFullName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        tableColumnAge.setCellValueFactory(new PropertyValueFactory<>("age"));
-        tableColumnNoRegistrations.setCellValueFactory(cellData -> {
-            Participant participant = cellData.getValue();
-            int noRegistrations = countRegistrations(participant);
-            return new SimpleIntegerProperty(noRegistrations).asObject();
-        });
+//        tableColumnFullName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+//        tableColumnAge.setCellValueFactory(new PropertyValueFactory<>("age"));
+//        tableColumnNoRegistrations.setCellValueFactory(cellData -> {
+//            Participant participant = cellData.getValue();
+//            int noRegistrations = countRegistrations(participant);
+//            return new SimpleIntegerProperty(noRegistrations).asObject();
+//        });
 
-        tableView.setItems(model);
+        tableColumnFullName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tableColumnAge.setCellValueFactory(new PropertyValueFactory<>("age"));
+        tableColumnNoRegistrations.setCellValueFactory(new PropertyValueFactory<>("noRegistrations"));
+
+//        tableView.setItems(model);
     }
 
     private int countRegistrations(Participant participant) {
