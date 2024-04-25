@@ -52,8 +52,8 @@ public class StartClient extends Application {
 
             LogInController logInController = loader.getController();
 
-//            IService service = new Proxy(serverIP, serverPort);
-            IService service = new ProtoProxy(serverIP, serverPort);
+            IService service = new Proxy(serverIP, serverPort);
+//            IService service = new ProtoProxy(serverIP, serverPort);
 
             logInController.setService(service, dialogStage);
 

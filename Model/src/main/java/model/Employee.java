@@ -1,12 +1,29 @@
 package model;
 
-public class Employee extends Person {
-    private String username, password;
+public class Employee extends Entity<Long> {
+    private String firstName, lastName, username, password;
 
     public Employee(String firstName, String lastName, String username, String password) {
-        super(firstName, lastName);
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.username = username;
         this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getUsername() {

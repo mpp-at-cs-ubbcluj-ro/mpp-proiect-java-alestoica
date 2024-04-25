@@ -17,6 +17,7 @@ public class MessageAlert {
         message.initOwner(owner);
         message.setTitle("Error!");
         message.setContentText(text);
+        System.out.println("MessageAlert" + text);
         message.showAndWait();
     }
 }

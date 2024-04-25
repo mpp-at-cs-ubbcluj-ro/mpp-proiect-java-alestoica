@@ -1,15 +1,15 @@
 import config.Config;
+import repository.ParticipantRepositoryHibernate;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import repository.AgeEventDBRepository;
 import repository.EmployeeDBRepository;
-import repository.ParticipantDBRepository;
+import repository.ParticipantRepository;
 import repository.RegistrationDBRepository;
 import server.Service;
 import service.*;
 import utils.AbstractServer;
 import utils.ConcurrentServer;
-import utils.ProtoConcurrentServer;
 import utils.ServerException;
 import validators.AgeEventValidator;
 import validators.EmployeeValidator;
@@ -38,12 +38,13 @@ public class StartServer {
         AgeEventValidator ageEventValidator = new AgeEventValidator();
         RegistrationValidator registrationValidator = new RegistrationValidator();
 
-        ParticipantDBRepository participantDBRepository = new ParticipantDBRepository(participantValidator, props);
+//        ParticipantDBRepository participantDBRepository = new ParticipantDBRepository(participantValidator, props);
+        ParticipantRepository participantRepositoryHibernate = new ParticipantRepositoryHibernate();
         EmployeeDBRepository employeeDBRepository = new EmployeeDBRepository(employeeValidator, props);
         AgeEventDBRepository ageEventDBRepository = new AgeEventDBRepository(ageEventValidator, props);
-        RegistrationDBRepository registrationDBRepository = new RegistrationDBRepository(registrationValidator, props, participantDBRepository, ageEventDBRepository, employeeDBRepository);
+        RegistrationDBRepository registrationDBRepository = new RegistrationDBRepository(registrationValidator, props, participantRepositoryHibernate, ageEventDBRepository, employeeDBRepository);
 
-        ParticipantService participantService = new ParticipantService(participantDBRepository);
+        ParticipantService participantService = new ParticipantService(participantRepositoryHibernate);
         EmployeeService employeeService = new EmployeeService(employeeDBRepository);
         AgeEventService ageEventService = new AgeEventService(ageEventDBRepository);
         RegistrationService registrationService = new RegistrationService(registrationDBRepository);
@@ -61,8 +62,8 @@ public class StartServer {
         }
 
         System.out.println("Starting server on port: " + serverPort);
-//        AbstractServer server = new ConcurrentServer(serverPort, service);
-        AbstractServer server = new ProtoConcurrentServer(serverPort, service);
+        AbstractServer server = new ConcurrentServer(serverPort, service);
+//        AbstractServer server = new ProtoConcurrentServer(serverPort, service);
 
         try {
             server.start();
