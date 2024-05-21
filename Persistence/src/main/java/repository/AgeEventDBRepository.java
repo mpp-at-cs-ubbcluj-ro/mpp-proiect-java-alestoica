@@ -5,6 +5,8 @@ import model.AgeGroup;
 import model.SportsEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import validators.AgeEventValidator;
 
 import java.sql.Connection;
@@ -16,11 +18,13 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
 
+@Component
 public class AgeEventDBRepository implements AgeEventRepository {
     private JdbcUtils dbUtils;
     private static final Logger logger = LogManager.getLogger();
     private AgeEventValidator validator;
 
+    @Autowired
     public AgeEventDBRepository(AgeEventValidator validator, Properties props) {
         logger.info("initializing AgeEventDBRepository with properties: {} ", props);
         this.dbUtils = new JdbcUtils(props);
@@ -144,15 +148,22 @@ public class AgeEventDBRepository implements AgeEventRepository {
         logger.traceEntry("saving age event {}", entity);
         Connection con = dbUtils.getConnection();
 
-        try(PreparedStatement preparedStatement = con.prepareStatement("insert into age_events (id, age_group, sports_event) values (?, ?, ?)")){
+        try(PreparedStatement preparedStatement = con.prepareStatement("insert into age_events (age_group, sports_event) values (?, ?)")){
 
-            preparedStatement.setLong(1, entity.getId());
-            preparedStatement.setString(2, entity.getAgeGroup().toString());
-            preparedStatement.setString(3, entity.getSportsEvent().toString());
+//            preparedStatement.setLong(1, entity.getId());
+            preparedStatement.setString(1, entity.getAgeGroup().toString());
+            preparedStatement.setString(2, entity.getSportsEvent().toString());
 
-            validator.validate(entity);
+//            validator.validate(entity);
 
             int result = preparedStatement.executeUpdate();
+
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    entity.setId(generatedKeys.getLong(1));
+                }
+            }
+
             logger.trace("saved {} instances", result);
 
         } catch (SQLException e) {

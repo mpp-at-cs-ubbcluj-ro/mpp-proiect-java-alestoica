@@ -4,6 +4,9 @@ public class AgeEvent extends Entity<Long> {
     private AgeGroup ageGroup;
     private SportsEvent sportsEvent;
 
+    public AgeEvent() {
+    }
+
     public AgeEvent(AgeGroup ageGroup, SportsEvent sportsEvent) {
         this.ageGroup = ageGroup;
         this.sportsEvent = sportsEvent;

@@ -38,7 +38,7 @@ public class Config {
     }
 
     @Bean
-    public ParticipantRepository createRepository(ParticipantValidator participantValidator, Properties props) {
+    public ParticipantRepository createParticipantRepository(ParticipantValidator participantValidator, Properties props) {
         return new ParticipantDBRepository(participantValidator, props);
     }
 

@@ -33,6 +33,9 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc
     runtimeOnly group: 'org.xerial', name: 'sqlite-jdbc', version: '3.45.1.0'
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-context
+    implementation group: 'org.springframework', name: 'spring-context', version: '6.1.5'
 }
 
 test {

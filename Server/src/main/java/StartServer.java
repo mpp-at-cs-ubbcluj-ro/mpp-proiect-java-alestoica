@@ -1,11 +1,7 @@
 import config.Config;
-import repository.ParticipantRepositoryHibernate;
+import repository.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import repository.AgeEventDBRepository;
-import repository.EmployeeDBRepository;
-import repository.ParticipantRepository;
-import repository.RegistrationDBRepository;
 import server.Service;
 import service.*;
 import utils.AbstractServer;
@@ -38,16 +34,16 @@ public class StartServer {
         AgeEventValidator ageEventValidator = new AgeEventValidator();
         RegistrationValidator registrationValidator = new RegistrationValidator();
 
-//        ParticipantDBRepository participantDBRepository = new ParticipantDBRepository(participantValidator, props);
-        ParticipantRepository participantRepositoryHibernate = new ParticipantRepositoryHibernate();
-        EmployeeDBRepository employeeDBRepository = new EmployeeDBRepository(employeeValidator, props);
-        AgeEventDBRepository ageEventDBRepository = new AgeEventDBRepository(ageEventValidator, props);
-        RegistrationDBRepository registrationDBRepository = new RegistrationDBRepository(registrationValidator, props, participantRepositoryHibernate, ageEventDBRepository, employeeDBRepository);
+        ParticipantRepository participantRepository = new ParticipantDBRepository(participantValidator, props);
+//        ParticipantRepository participantRepository = new ParticipantRepositoryHibernate();
+        EmployeeDBRepository employeeRepository = new EmployeeDBRepository(employeeValidator, props);
+        AgeEventDBRepository ageEventRepository = new AgeEventDBRepository(ageEventValidator, props);
+        RegistrationDBRepository registrationRepository = new RegistrationDBRepository(registrationValidator, props, participantRepository, ageEventRepository, employeeRepository);
 
-        ParticipantService participantService = new ParticipantService(participantRepositoryHibernate);
-        EmployeeService employeeService = new EmployeeService(employeeDBRepository);
-        AgeEventService ageEventService = new AgeEventService(ageEventDBRepository);
-        RegistrationService registrationService = new RegistrationService(registrationDBRepository);
+        ParticipantService participantService = new ParticipantService(participantRepository);
+        EmployeeService employeeService = new EmployeeService(employeeRepository);
+        AgeEventService ageEventService = new AgeEventService(ageEventRepository);
+        RegistrationService registrationService = new RegistrationService(registrationRepository);
 
 //        IService service = getService();
         IService service = new Service(participantService, employeeService, ageEventService, registrationService);

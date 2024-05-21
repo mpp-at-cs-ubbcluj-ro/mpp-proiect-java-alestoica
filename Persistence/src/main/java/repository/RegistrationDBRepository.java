@@ -6,6 +6,8 @@ import model.Participant;
 import model.Registration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import validators.RegistrationValidator;
 
 import java.sql.Connection;
@@ -17,6 +19,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
 
+//@Component
 public class RegistrationDBRepository implements RegistrationRepository {
     private JdbcUtils dbUtils;
     private static final Logger logger = LogManager.getLogger();
@@ -25,6 +28,7 @@ public class RegistrationDBRepository implements RegistrationRepository {
     private AgeEventRepository ageEventRepository;
     private EmployeeRepository employeeRepository;
 
+//    @Autowired
     public RegistrationDBRepository(RegistrationValidator validator, Properties props, ParticipantRepository participantRepository, AgeEventRepository ageEventRepository, EmployeeRepository employeeRepository) {
         logger.info("initializing RegistrationDBRepository with properties: {} ", props);
         this.dbUtils = new JdbcUtils(props);

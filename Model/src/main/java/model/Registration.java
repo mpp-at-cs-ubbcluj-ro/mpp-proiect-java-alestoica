@@ -5,6 +5,9 @@ public class Registration extends Entity<Long> {
     private AgeEvent ageEvent;
     private Employee employee;
 
+    public Registration() {
+    }
+
     public Registration(Participant participant, AgeEvent ageEvent, Employee employee) {
         this.participant = participant;
         this.ageEvent = ageEvent;
